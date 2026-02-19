@@ -1,0 +1,22 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 316 356" width="316" height="356">
+	<defs>
+		<image width="41" height="42" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAqCAYAAAAu9HJYAAAACXBIWXMAAC4jAAAuIwF4pT92AAAFaUlEQVRYR9VZbWxTVRg+57bdR0ENUScJGkXasbV3m5guqxOJ0x+SLUS+NBpjIBA1ChGi8Ye/9I/+MSbOj2iMIsFEIzMGhM7hF2QG2hIXGXYfXYeMGJVIdG7AYO16Xp9TuuXu3tv23nWk4SQ39/ae533f57znfc99zyln89TO/FS3aNLF1jJOjVyILjaaPORtHZ6cD/W8GCUD0Zobncy5log9Aj0P4HJp9I0zooOkKB1lE+e7lraMXJ6rLdsk4z9X38RSrnWcc0msBZfTgvHzwIQYsY5Kuu6b25rDlyzIzEAskRw+Wl8lnGI9E7SRcX4/pB12jOiwF4izToVEh9tZ2bkk0DNRSFdOkqeP+xZPCb5eML4RoFVFEsvF4yIRdSqMfznhVkINDScvmgENJBMRdQsxtgnglbiUQqOcx37p0S6F0bueYN9hrV5DPIHgiwD45tG4VVVuAOXMncN9FkkzT41b1XqVcAb7ZiTHrpJxa2qJCpNEIJfYk7wwScaMIGsumC/UNUHSwnQrCpU0JslkJk0Sp8QxSelrISYdFkiSKO10i6QFkkwp6RI0lbLiydKSFGpL/wX9YmaSOFOl9KSsOw3NQFIIVylj0tRBBpIkLuuBaQztDdR8AVe5cxEq8mb83jWH78soZ7QtzR3LedJVxTmtho7wbD3mXztDPYn9Ck9E1alsLSlwX10djH2nJwXMVmA/skIW5d9ZJhyB5c29f2jxkFcSx9U92FY8kX0fhi3phFnN4MmhiPpKliBk2QdmBKUGb1PsY9w6rZBUOH9eT1DKcQ7qjvJtjDNZQ8oWSIT9a/KSjEfUlyEoSWYaRrA/LwnOv7ZAMu12lIVy4ZYFesbgjOki10UK70hE/Q9p8TOejIfrXsDcv66bjt/zkcB05e3Pyv5TaLPFiZ2ZsUOsnIjvG4z65BZ52lmMxaN12xHIb+oJgXRdPpIK5e/Pylb9FlFvKeDxel1/hULKgXi0/r7MjMbD/qc40dtmSoTCdsjgNuvr7a1fQJyetjDdLMVoZy7cYESVBB806XdzEqFEpD6ImFYWA2C6tcU0NA9H/O2JTk+5Vkki4rm+8hLtxrs7rZDkjL+EXeiTeuzwMZ8HS9tneJ/rgMHNePqGDDlk9Oe4PZbH4CC8tp8JdgrOr0VoyNOLW83wSIJPoXQD+uTub1aTCYKB/0Ccn1NwZoRZehyABXns7sTq0p4hefrwHRWpioXd8GejFc/kwkDZHm8wtikR8T+H5fa9YnQxRh9WB/uekToy8SYPk6Zc6YfxOGuxtWeE/+ksd+6QMp6mvvc1y4o9NVfQR8adFdunBWeSwhcY+AvxIYnaOkyaYYAkWrrixH/yN9ZaEuTcgkdDRWOB8XBSiA2BQE/KQDLjgeCvPYiZzXiEI6w3JMaP1U2xUPxYwxLE965YzFdWe8+JEegyXTXyaB4jwdeozf3/ajGmWR0Pq69qvzwQ+JsR340DUlkU6Nc0qQ+D4q/hvg6Pfpya7cUUfYvEaMc7Q2LA6D4ISCIycSqzhNJIyDZvU98h/SBMScoiYyji/wIVz+0AvDO5UOxV1f7kULhuM4h+Yt3H5kieZh7vvbFT8hDWwRxbMcRnMci3ZCabSeQ8+pOLuCwAtEKJ7hU3U1nqLN4Vc9o2CDK1Wr1mtrT9OY3pCUoh76pfZLUSLdKTBw3TqXOGvt+2RxBLB4oiqXDb8rZJOhyKbSOaQY16R2qO2h2kbZKexpMxBHmfXUOZJYDYV/zRDrkdsdUsHezrNWayP+xrRGq1gXAblNwNjJmuJN53Y20PKUyElgUHErbYZcFzIqk3dOVPAKUV8doKqneRYEeQ/yFKpb6vWRk33abaIfs/bn7L/Jiqb+kAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+		tspan { white-space:pre } 
+		.s0 { fill: #80e0ff;stroke: #000000;stroke-width: 8 } 
+		.t1 { font-size: 25px;fill: #000000;font-family: "Arial" } 
+		.s2 { fill: none;stroke: #000000;stroke-width: 8 } 
+		.s3 { fill: #ffff00;stroke: #000000;stroke-width: 8 } 
+	</style>
+	<path class="s0" d="m8 88h300v200h-300z"/>
+	<text id="SOF" style="transform: matrix(2,0,0,2,158,142.5)">
+		<tspan x="-25" y="0" class="t1">SOF
+</tspan>
+	</text>
+	<g>
+		<path class="s2" d="m113 68l-50-50m0 50l50-50m70 50l-50-50m0 50l50-50m70 50l-50-50m0 50l50-50"/>
+	</g>
+	<path class="s3" d="m8 298h300v50h-300z"/>
+	<use id="yellow hd skull.svg" href="#img1" transform="matrix(2.963,0,0,2.963,97,152)"/>
+</svg>

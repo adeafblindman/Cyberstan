@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Helldivers Battle Map</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        body { margin: 0; padding: 0; font-family: sans-serif; display: flex; flex-direction: column; height: 100vh; }
+        #controls { padding: 15px; background-color: #2c3e50; color: white; text-align: center; }
+        
+        button {
+            padding: 8px 15px;
+            margin: 2px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        button:hover { background-color: #2980b9; }
+        button.active { background-color: #e74c3c; }
+
+        #map { flex-grow: 1; background-color: #1a1a1a; }
+
+        /* Animation for unit movement */
+        .animated-unit {
+            transition: transform 1.5s ease-in-out;
+        }
+
+        .unit-img {
+            filter: drop-shadow(0 0 4px rgba(0,0,0,0.8));
+        }
+    </style>
+</head>
+<body>
+
+    <div id="controls">
+        <strong style="margin-right: 15px;">Operations Calendar:</strong>
+        <button class="day-btn active" onclick="changeDay(0, this)">D0</button>
+        <button class="day-btn" onclick="changeDay(1, this)">D1</button>
+        <button class="day-btn" onclick="changeDay(2, this)">D2</button>
+        <button class="day-btn" onclick="changeDay(3, this)">D3</button>
+        <button class="day-btn" onclick="changeDay(4, this)">D4</button>
+        <button class="day-btn" onclick="changeDay(5, this)">D5</button>
+        <button class="day-btn" onclick="changeDay(6, this)">D6</button>
+        <button class="day-btn" onclick="changeDay(7, this)">D7</button>
+        <button class="day-btn" onclick="changeDay(8, this)">D8</button>
+        <button class="day-btn" onclick="changeDay(9, this)">D9</button>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // --- 1. DATA STRUCTURE ---
+        const battleData = {
+            days: [
+                { overlayUrl: './maps/MAP-D0.jpg' }, //0
+				{ overlayUrl: './maps/MAP-D0.jpg' }, //1
+                { overlayUrl: './maps/MAP-D0.jpg' }, //2
+				{ overlayUrl: './maps/MAP-D0.jpg' }, //3
+                { overlayUrl: './maps/MAP-D0.jpg' }, //4 
+				{ overlayUrl: './maps/MAP-D0.jpg' }, //5
+                { overlayUrl: './maps/MAP-D0.jpg' }, //6
+				{ overlayUrl: './maps/MAP-D0.jpg' }, //7
+                { overlayUrl: './maps/MAP-D0.jpg' }, //8
+				{ overlayUrl: './maps/MAP-D0.jpg' }  //9
+            ],
+            units: [
+                {
+                    id: 'HD1', name: 'HELLDIVER CORPS.', 
+                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
+                    // Note: You need 10 coordinate sets here to match the 10 days!
+                    positions: [ 
+                        [42, 966], [42, 966], [42, 966], [208, 1600], [208, 1600], 
+                        [500, 500], [500, 500], [500, 500], [500, 500], [500, 500] 
+                    ]
+                },
+                {
+                    id: 'HD2', name: 'HELLDIVER CORPS.', 
+                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
+                    positions: [ 
+                        [42, 966], [42, 966], [42, 966], [298, 430], [298, 430],
+                        [500, 500], [500, 500], [500, 500], [500, 500], [500, 500]
+                    ]
+                },
+				{
+                    id: 'HD3', name: 'HELLDIVER CORPS.', 
+                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
+					spawnDay: 5, // This unit will be hidden until Day 4
+                    positions: [ 
+                        null, null, null, null, null,
+                        [590, 962], [500, 500], [500, 500], [500, 500], [500, 500]
+                    ]
+                },
+				{
+                    id: '3rd Army', name: '3rd Army', 
+                    iconUrl: 'icons/3rd Army - Infantry - Army.svg',
+					spawnDay: 1, // This unit will be hidden until Day 4
+                    positions: [ 
+                        null, [50, 968], [154, 714], [154, 714], [154, 714],
+                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                    ]
+                },
+				{
+                    id: '68th ADD', name: '68th Air Assault Division', 
+                    iconUrl: 'icons/68th Air Assault Division - Air Assault with Organic Lift - Division.svg',
+					spawnDay: 1, // This unit will be hidden until Day 4
+                    positions: [ 
+                        null, [50, 968], [154, 714], [154, 714], [154, 714],
+                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                    ]
+                },
+				{
+                    id: '23rd ADD', name: '23rd Air Assault Division', 
+                    iconUrl: 'icons/23rd Air Assault Division - Air Assault with Organic Lift - Division.svg',
+					spawnDay: 1, // This unit will be hidden until Day 4
+                    positions: [ 
+                        null, [50, 968], [154, 714], [154, 714], [154, 714],
+                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                    ]
+                },
+				{
+                    id: '14th MAD', name: '14th Marine Assault Division', 
+                    iconUrl: 'icons/14th Marine Assault Division - Marine - Division.svg',
+					spawnDay: 1, // This unit will be hidden until Day 4
+                    positions: [ 
+                        null, [50, 968], [154, 714], [154, 714], [154, 714],
+                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                    ]
+                },
+				{
+                    id: '77th MI', name: '77th Mobile Infantry', 
+                    iconUrl: 'icons/77th Mobile Infantry - Motorized.svg',
+					spawnDay: 1, // This unit will be hidden until Day 4
+                    positions: [ 
+                        null, [50, 968], [154, 714], [154, 714], [154, 714],
+                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                    ]
+                },
+				{
+                    id: '4th Army', name: '4th Army', 
+                    iconUrl: 'icons/4TH ARMY - Infantry - Army.svg',
+					spawnDay: 1, // This unit will be hidden until Day 4
+                    positions: [ 
+                        null, [50, 968], [154, 714], [154, 714], [154, 714],
+                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                    ]
+                },
+				{
+                    id: '8th Army', name: '8th Army', 
+                    iconUrl: 'icons/4TH ARMY - Infantry - Army.svg',
+					spawnDay: 1, // This unit will be hidden until Day 4
+                    positions: [ 
+                        null, [50, 968], [154, 714], [154, 714], [154, 714],
+                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                    ]
+                },
+				{
+                    id: '12th Armor', name: '12th Armor', 
+                    iconUrl: 'icons/12TH ARMOR - Armored_Mechanized_Tracked.svg',
+					spawnDay: 1, // This unit will be hidden until Day 4
+                    positions: [ 
+                        null, [50, 968], [154, 714], [154, 714], [154, 714],
+                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                    ]
+                },
+				{
+                    id: '22nd Cavalry', name: '22nd Cavalry', 
+                    iconUrl: 'icons/22nd CAV - Reconnaissance_Cavalry_Scout - Company.svg',
+					spawnDay: 1, // This unit will be hidden until Day 4
+                    positions: [ 
+                        null, [50, 968], [154, 714], [154, 714], [154, 714],
+                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                    ]
+                },
+				{
+                    id: '14th Ar', name: '14th Air Recon', 
+                    iconUrl: 'icons/14th Air Recon - Reconnaissance.svg',
+					spawnDay: 1, // This unit will be hidden until Day 4
+                    positions: [ 
+                        null, [50, 968], [154, 714], [154, 714], [154, 714],
+                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                    ]
+                }
+				
+				
+            ]
+        };
+
+        // --- 2. MAP SETUP ---
+        const bounds = [[0, 0], [1080, 1920]]; 
+        const map = L.map('map', {
+            crs: L.CRS.Simple,
+            minZoom: -1,
+            maxZoom: 2,
+            maxBounds: bounds
+        });
+
+        // Background Base Layer (Your assets/Background.png)
+        L.imageOverlay('assets/Background.png', bounds).addTo(map);
+
+        // Tactical Overlay (The changing JPGs)
+        let tacticalOverlay = L.imageOverlay(battleData.days[0].overlayUrl, bounds, { 
+            opacity: 1, // Adjust if you want to see the background through it
+            zIndex: 10 
+        }).addTo(map);
+
+        map.fitBounds(bounds);
+
+        // --- 3. INITIALIZE STATIC UI ELEMENTS ---
+        const nameIcon = L.icon({
+            iconUrl: 'assets/NAME.png',
+            iconSize: [640, 39],
+            iconAnchor: [0, 0] // Top left
+        });
+
+        L.marker([0, 0], { icon: nameIcon, interactive: false, zIndexOffset: 1000 }).addTo(map);
+
+        // --- 4. INITIALIZE UNITS ---
+        const unitMarkers = {};
+
+        battleData.units.forEach(unit => {
+    const icon = L.divIcon({
+        className: 'animated-unit',
+        html: `<img src="${unit.iconUrl}" class="unit-img" style="width: 32px; height: 32px;" />`, 
+        iconSize: [32, 32],
+        iconAnchor: [16, 16]
+    });
+
+    const marker = L.marker(unit.positions[0] || [0,0], { icon: icon, zIndexOffset: 500 });
+    marker.bindTooltip(unit.name, { direction: 'top', offset: [0, -15] });
+    
+    unitMarkers[unit.id] = marker;
+
+    // Only add to map if spawnDay is 0 (or undefined)
+    if (!unit.spawnDay || unit.spawnDay === 0) {
+        marker.addTo(map);
+    }
+});
+
+        // --- 5. TOGGLE LOGIC ---
+        function changeDay(dayIndex, buttonElement) {
+    // ... UI Toggle logic remains the same ...
+    document.querySelectorAll('.day-btn').forEach(btn => btn.classList.remove('active'));
+    buttonElement.classList.add('active');
+    tacticalOverlay.setUrl(battleData.days[dayIndex].overlayUrl);
+
+    // --- NEW LOGIC FOR SHOW/HIDE ---
+    battleData.units.forEach(unit => {
+        const marker = unitMarkers[unit.id];
+        const spawnDay = unit.spawnDay || 0;
+
+        if (dayIndex >= spawnDay) {
+            // If the marker isn't on the map, add it
+            if (!map.hasLayer(marker)) {
+                marker.addTo(map);
+            }
+            
+            // Move the marker to the new position
+            const newPos = unit.positions[dayIndex];
+            if (newPos) {
+                marker.setLatLng(newPos);
+            }
+        } else {
+            // If it's before the spawn day, remove it from the map
+            if (map.hasLayer(marker)) {
+                map.removeLayer(marker);
+            }
+        }
+    });
+}
+
+        // Helper: Click map to get coordinates in console
+        map.on('click', (e) => {
+            console.log(`[${Math.round(e.latlng.lat)}, ${Math.round(e.latlng.lng)}]`);
+        });
+    </script>
+</body>
+</html>
