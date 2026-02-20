@@ -41,16 +41,16 @@
 
     <div id="controls">
         <strong style="margin-right: 15px;">Operations Calendar:</strong>
-        <button class="day-btn active" onclick="changeDay(0, this)">Day 0</button>
-        <button class="day-btn" onclick="changeDay(1, this)">Day 1</button>
-        <button class="day-btn" onclick="changeDay(2, this)">Day 2</button>
-        <button class="day-btn" onclick="changeDay(3, this)">Day 3</button>
-        <button class="day-btn" onclick="changeDay(4, this)">Day 4</button>
-        <button class="day-btn" onclick="changeDay(5, this)">Day 5</button>
-        <button class="day-btn" onclick="changeDay(6, this)">Day 6</button>
-        <button class="day-btn" onclick="changeDay(7, this)">Day 7</button>
-        <button class="day-btn" onclick="changeDay(8, this)">Day 8</button>
-        <button class="day-btn" onclick="changeDay(9, this)">Day 9</button> 
+        <button class="day-btn active" onclick="changeDay(0, this)">C Day 0</button>
+        <button class="day-btn" onclick="changeDay(1, this)">C Day +1</button>
+        <button class="day-btn" onclick="changeDay(2, this)">C Day +2</button>
+        <button class="day-btn" onclick="changeDay(3, this)">C Day +3</button>
+        <button class="day-btn" onclick="changeDay(4, this)">C Day +4</button>
+        <button class="day-btn" onclick="changeDay(5, this)">C Day +5</button>
+        <button class="day-btn" onclick="changeDay(6, this)">C Day +6</button>
+        <button class="day-btn" onclick="changeDay(7, this)">C Day +7</button>
+        <button class="day-btn" onclick="changeDay(8, this)">C Day +8</button>
+        <button class="day-btn" onclick="changeDay(9, this)">C Day +9</button> 
     </div>
 
     <div id="map"></div>
@@ -72,120 +72,217 @@
 				{ overlayUrl: './maps/BASE MAP.webp' }  //9
             ],
             units: [
-                {
-                    id: 'HD1', name: 'HELLDIVER CORPS.', 
-                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
-                    // Note: You need 10 coordinate sets here to match the 10 days!
-                    positions: [ 
-                        [42, 966], [42, 966], [42, 966], [208, 1600], [208, 1600], 
-                        [500, 500], [500, 500], [500, 500], [500, 500], [500, 500] 
-                    ]
-                },
-                {
-                    id: 'HD2', name: 'HELLDIVER CORPS.', 
-                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
-                    positions: [ 
-                        [42, 966], [42, 966], [42, 966], [298, 430], [298, 430],
-                        [500, 500], [500, 500], [500, 500], [500, 500], [500, 500]
-                    ]
-                },
-				{
-                    id: 'HD3', name: 'HELLDIVER CORPS.', 
-                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
-					spawnDay: 5, // This unit will be hidden until Day 4
-                    positions: [ 
-                        null, null, null, null, null,
-                        [590, 962], [500, 500], [500, 500], [500, 500], [500, 500]
-                    ]
-                },
+                
 				{
                     id: '3rd Army', name: '3rd Army', 
                     iconUrl: 'icons/3rd Army - Infantry - Army.svg',
-					spawnDay: 1, // This unit will be hidden until Day 4
+					//spawnDay: 1, // This unit will be hidden until Day 4
                     positions: [ 
-                        null, [50, 968], [154, 714], [154, 714], [154, 714],
-                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                       [74, 456],  //0
+                       [111, 364], //1
+                       [140, 329], //2
+                       [140, 329], //3
+                       [500, 500], //4
+                       [500, 500], //5
+                       [500, 500], //6
+                       [500, 500], //7
+                       [500, 500], //8
+                       [500, 500]  //9
                     ]
                 },
 				{
                     id: '68th ADD', name: '68th Air Assault Division', 
                     iconUrl: 'icons/68th Air Assault Division - Air Assault with Organic Lift - Division.svg',
-					spawnDay: 1, // This unit will be hidden until Day 4
+					//spawnDay: 9, // This unit will be hidden until Day 4
                     positions: [ 
-                        null, [50, 968], [154, 714], [154, 714], [154, 714],
-                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                        [110, 1136], //0
+                        [152, 1252], //1
+                        [208, 1319], //2
+                        [334, 1394], //3
+                        [500, 500], //4
+                        [500, 500], //5
+                        [500, 500], //6
+                        [500, 500], //7
+                        [500, 500], //8
+                        [500, 500] //9
                     ]
                 },
 				{
                     id: '23rd ADD', name: '23rd Air Assault Division', 
                     iconUrl: 'icons/23rd Air Assault Division - Air Assault with Organic Lift - Division.svg',
-					spawnDay: 1, // This unit will be hidden until Day 4
+					//spawnDay: 9, // This unit will be hidden until Day 4
                     positions: [ 
-                        null, [50, 968], [154, 714], [154, 714], [154, 714],
-                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                        [110, 1136], //0
+                        [94, 1210], //1
+                        [177, 1299], //2
+                        [319, 1339], //3
+                        [500, 500], //4
+                        [500, 500], //5
+                        [500, 500], //6
+                        [500, 500], //7
+                        [500, 500], //8
+                        [500, 500]  //9
                     ]
                 },
 				{
                     id: '14th MAD', name: '14th Marine Assault Division', 
                     iconUrl: 'icons/14th Marine Assault Division - Marine - Division.svg',
-					spawnDay: 1, // This unit will be hidden until Day 4
+					//spawnDay: 1, // This unit will be hidden until Day 4
                     positions: [ 
-                        null, [50, 968], [154, 714], [154, 714], [154, 714],
-                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                        [74, 456], //0
+                        [54, 556], //1
+                        [100, 670], //2
+                        [100, 786], //3
+                        [500, 500], //4
+                        [500, 500], //5
+                        [500, 500], //6
+                        [500, 500], //7
+                        [500, 500], //8
+                        [500, 500]  //9
                     ]
                 },
 				{
                     id: '77th MI', name: '77th Mobile Infantry', 
                     iconUrl: 'icons/77th Mobile Infantry - Motorized.svg',
-					spawnDay: 1, // This unit will be hidden until Day 4
+					spawnDay: 9, // This unit will be hidden until Day 4
                     positions: [ 
-                        null, [50, 968], [154, 714], [154, 714], [154, 714],
-                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                        null, //0
+                        [500, 500], //1
+                        [500, 500], //2
+                        [500, 500], //3
+                        [500, 500], //4
+                        [500, 500], //5
+                        [500, 500], //6
+                        [500, 500], //7
+                        [500, 500], //8
+                        [500, 500]  //9
                     ]
                 },
 				{
                     id: '4th Army', name: '4th Army', 
                     iconUrl: 'icons/4TH ARMY - Infantry - Army.svg',
-					spawnDay: 1, // This unit will be hidden until Day 4
+					spawnDay: 9, // This unit will be hidden until Day 4
                     positions: [ 
-                        null, [50, 968], [154, 714], [154, 714], [154, 714],
-                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                        null, //0
+                        [500, 500], //1
+                        [500, 500], //2
+                        [500, 500], //3
+                        [500, 500], //4
+                        [500, 500], //5
+                        [500, 500], //6
+                        [500, 500], //7
+                        [500, 500], //8
+                        [500, 500]  //9
                     ]
                 },
 				{
                     id: '8th Army', name: '8th Army', 
                     iconUrl: 'icons/4TH ARMY - Infantry - Army.svg',
-					spawnDay: 1, // This unit will be hidden until Day 4
+					spawnDay: 9, // This unit will be hidden until Day 4
                     positions: [ 
-                        null, [50, 968], [154, 714], [154, 714], [154, 714],
-                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                        null, //0
+                        [500, 500], //1
+                        [500, 500], //2
+                        [500, 500], //3
+                        [500, 500], //4
+                        [500, 500], //5
+                        [500, 500], //6
+                        [500, 500], //7
+                        [500, 500], //8
+                        [500, 500]  //9
                     ]
                 },
 				{
                     id: '12th Armor', name: '12th Armor', 
                     iconUrl: 'icons/12TH ARMOR - Armored_Mechanized_Tracked.svg',
-					spawnDay: 1, // This unit will be hidden until Day 4
+					spawnDay: 9, // This unit will be hidden until Day 4
                     positions: [ 
-                        null, [50, 968], [154, 714], [154, 714], [154, 714],
-                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                        null, //0
+                        [500, 500], //1
+                        [500, 500], //2
+                        [500, 500], //3
+                        [500, 500], //4
+                        [500, 500], //5
+                        [500, 500], //6
+                        [500, 500], //7
+                        [500, 500], //8
+                        [500, 500]  //9
                     ]
                 },
 				{
                     id: '22nd Cavalry', name: '22nd Cavalry', 
                     iconUrl: 'icons/22nd CAV - Reconnaissance_Cavalry_Scout - Company.svg',
-					spawnDay: 1, // This unit will be hidden until Day 4
+					spawnDay: 9, // This unit will be hidden until Day 4
                     positions: [ 
-                        null, [50, 968], [154, 714], [154, 714], [154, 714],
-                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                        null, //0
+                        [500, 500], //1
+                        [500, 500], //2
+                        [500, 500], //3
+                        [500, 500], //4
+                        [500, 500], //5
+                        [500, 500], //6
+                        [500, 500], //7
+                        [500, 500], //8
+                        [500, 500]  //9
                     ]
                 },
 				{
                     id: '14th Ar', name: '14th Air Recon', 
                     iconUrl: 'icons/14th Air Recon - Reconnaissance.svg',
-					spawnDay: 1, // This unit will be hidden until Day 4
+					spawnDay: 9, // This unit will be hidden until Day 4
                     positions: [ 
-                        null, [50, 968], [154, 714], [154, 714], [154, 714],
-                        [154, 714], [500, 500], [500, 500], [500, 500], [500, 500]
+                        null, //0
+                        [500, 500], //1
+                        [500, 500], //2
+                        [500, 500], //3
+                        [500, 500], //4
+                        [500, 500], //5
+                        [500, 500], //6
+                        [500, 500], //7
+                        [500, 500], //8
+                        [500, 500]  //9
+                    ]
+                },
+                {
+                    id: 'HD1', name: 'HELLDIVER CORPS. 1', 
+                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
+                    // Note: You need 10 coordinate sets here to match the 10 days!
+                    positions: [ 
+                        [110, 1136], [110, 1136], [110, 1136], [110, 1136], [110, 1136], 
+                        [110, 1136], [110, 1136], [110, 1136], [110, 1136], [110, 1136] 
+                    ]
+                },
+                {
+                    id: 'HD2', name: 'HELLDIVER CORPS. 2', 
+                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
+                    positions: [ 
+                        [74, 456], //0
+                        [74, 456], //1
+                        [74, 456], //2
+                        [348, 812], //3
+                        [500, 500], //4
+                        [500, 500], //5
+                        [500, 500], //6
+                        [500, 500], //7
+                        [500, 500], //8
+                        [500, 500] //9
+                    ]
+                },
+				{
+                    id: 'HD3', name: 'HELLDIVER CORPS. 3', 
+                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
+					spawnDay: 3, // This unit will be hidden until Day 4
+                    positions: [ 
+                        null, //0
+                        null, //1
+                        null, //2
+                        [500, 1486], //3
+                        [500, 500], //4
+                        [500, 500], //5
+                        [500, 500], //6
+                        [500, 500], //7
+                        [500, 500], //8
+                        [500, 500] //9
                     ]
                 }
 				
@@ -228,9 +325,9 @@
         battleData.units.forEach(unit => {
     const icon = L.divIcon({
         className: 'animated-unit',
-        html: `<img src="${unit.iconUrl}" class="unit-img" style="width: 32px; height: 32px;" />`, 
-        iconSize: [32, 32],
-        iconAnchor: [16, 16]
+        html: `<img src="${unit.iconUrl}" class="unit-img" style="width: 40px; height: 45px;" />`, 
+        iconSize: [40, 45],
+        iconAnchor: [20, 15]
     });
 
     const marker = L.marker(unit.positions[0] || [0,0], { icon: icon, zIndexOffset: 500 });
