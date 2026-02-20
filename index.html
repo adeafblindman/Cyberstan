@@ -35,6 +35,11 @@
         .unit-img {
             filter: drop-shadow(0 0 4px rgba(0,0,0,0.8));
         }
+
+        /* This will fade the marker in and out when added/removed */
+.leaflet-marker-icon {
+    transition: transform 1.5s ease-in-out, opacity 0.5s ease-in-out;
+}
     </style>
 </head>
 <body>
@@ -63,13 +68,13 @@
                 { overlayUrl: './maps/BASE MAP.webp' }, //0
 				{ overlayUrl: './maps/BASE MAP.webp' }, //1
                 { overlayUrl: './maps/BASE MAP.webp' }, //2
-				{ overlayUrl: './maps/BASE MAP.webp' }, //3
-                { overlayUrl: './maps/BASE MAP.webp' }, //4 
-				{ overlayUrl: './maps/BASE MAP.webp' }, //5
-                { overlayUrl: './maps/BASE MAP.webp' }, //6
-				{ overlayUrl: './maps/BASE MAP.webp' }, //7
-                { overlayUrl: './maps/BASE MAP.webp' }, //8
-				{ overlayUrl: './maps/BASE MAP.webp' }  //9
+				{ overlayUrl: './maps/MAP-D3.webp' }, //3
+                { overlayUrl: './maps/MAP-D3.webp' }, //4 
+				{ overlayUrl: './maps/MAP-D5.webp' }, //5
+                { overlayUrl: './maps/MAP-D5.webp' }, //6
+				{ overlayUrl: './maps/MAP-D5.webp' }, //7
+                { overlayUrl: './maps/MAP-D5.webp' }, //8
+				{ overlayUrl: './maps/MAP-D5.webp' }  //9
             ],
             units: [
                 
@@ -78,12 +83,12 @@
                     iconUrl: 'icons/3rd Army - Infantry - Army.svg',
 					//spawnDay: 1, // This unit will be hidden until Day 4
                     positions: [ 
-                       [74, 456],  //0
-                       [111, 364], //1
-                       [140, 329], //2
-                       [140, 329], //3
-                       [500, 500], //4
-                       [500, 500], //5
+                       [110, 1136],  //0
+                       [136, 1045], //1
+                       [206, 898], //2
+                       [269, 761], //3
+                       [299, 728], //4
+                       [374, 666], //5
                        [500, 500], //6
                        [500, 500], //7
                        [500, 500], //8
@@ -99,8 +104,8 @@
                         [152, 1252], //1
                         [208, 1319], //2
                         [334, 1394], //3
-                        [500, 500], //4
-                        [500, 500], //5
+                        [388, 1406], //4
+                        [459, 1418], //5
                         [500, 500], //6
                         [500, 500], //7
                         [500, 500], //8
@@ -116,8 +121,8 @@
                         [94, 1210], //1
                         [177, 1299], //2
                         [319, 1339], //3
-                        [500, 500], //4
-                        [500, 500], //5
+                        [395, 1343], //4
+                        [475, 1322], //5
                         [500, 500], //6
                         [500, 500], //7
                         [500, 500], //8
@@ -129,12 +134,12 @@
                     iconUrl: 'icons/14th Marine Assault Division - Marine - Division.svg',
 					//spawnDay: 1, // This unit will be hidden until Day 4
                     positions: [ 
-                        [74, 456], //0
-                        [54, 556], //1
-                        [100, 670], //2
-                        [100, 786], //3
-                        [500, 500], //4
-                        [500, 500], //5
+                        [110, 1136], //0
+                        [111, 1006], //1
+                        [107, 906], //2
+                        [176, 788], //3
+                        [207, 717], //4
+                        [282, 598], //5
                         [500, 500], //6
                         [500, 500], //7
                         [500, 500], //8
@@ -144,14 +149,14 @@
 				{
                     id: '77th MI', name: '77th Mobile Infantry', 
                     iconUrl: 'icons/77th Mobile Infantry - Motorized.svg',
-					spawnDay: 9, // This unit will be hidden until Day 4
+					//spawnDay: 9, // This unit will be hidden until Day 4
                     positions: [ 
-                        null, //0
-                        [500, 500], //1
-                        [500, 500], //2
-                        [500, 500], //3
-                        [500, 500], //4
-                        [500, 500], //5
+                        [110, 1136], //0
+                        [268, 1130], //1
+                        [376, 1136], //2
+                        [268, 1130], //3
+                        [212, 1132], //4
+                        [93, 1128], //5
                         [500, 500], //6
                         [500, 500], //7
                         [500, 500], //8
@@ -161,14 +166,14 @@
 				{
                     id: '4th Army', name: '4th Army', 
                     iconUrl: 'icons/4TH ARMY - Infantry - Army.svg',
-					spawnDay: 9, // This unit will be hidden until Day 4
+					//spawnDay: 9, // This unit will be hidden until Day 4
                     positions: [ 
-                        null, //0
-                        [500, 500], //1
-                        [500, 500], //2
-                        [500, 500], //3
-                        [500, 500], //4
-                        [500, 500], //5
+                        [110, 1136], //0
+                        [200, 1046], //1
+                        [284, 982], //2
+                        [342, 958], //3
+                        [362, 920], //4
+                        [422, 911], //5
                         [500, 500], //6
                         [500, 500], //7
                         [500, 500], //8
@@ -248,8 +253,16 @@
                     iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
                     // Note: You need 10 coordinate sets here to match the 10 days!
                     positions: [ 
-                        [110, 1136], [110, 1136], [110, 1136], [110, 1136], [110, 1136], 
-                        [110, 1136], [110, 1136], [110, 1136], [110, 1136], [110, 1136] 
+                        [110, 1136], //0
+                        [110, 1136], //1
+                        [110, 1136], //2
+                        [338, 812], //3
+                        [338, 812], //4
+                        [780, 1110], //5
+                        [338, 812], //6
+                        [338, 812], //7
+                        [338, 812], //8
+                        [338, 812] //9
                     ]
                 },
                 {
@@ -259,13 +272,13 @@
                         [74, 456], //0
                         [74, 456], //1
                         [74, 456], //2
-                        [348, 812], //3
-                        [500, 500], //4
-                        [500, 500], //5
-                        [500, 500], //6
-                        [500, 500], //7
-                        [500, 500], //8
-                        [500, 500] //9
+                        [74, 456], //3
+                        [74, 456], //4
+                        [74, 456], //5
+                        [74, 456], //6
+                        [74, 456], //7
+                        [74, 456], //8
+                        [74, 456] //9
                     ]
                 },
 				{
@@ -277,15 +290,59 @@
                         null, //1
                         null, //2
                         [500, 1486], //3
-                        [500, 500], //4
-                        [500, 500], //5
-                        [500, 500], //6
-                        [500, 500], //7
-                        [500, 500], //8
-                        [500, 500] //9
+                        [500, 1486], //4
+                        [500, 1486], //5
+                        [500, 1486], //6
+                        [500, 1486], //7
+                        [500, 1486], //8
+                        [500, 1486] //9
+                    ]
+                },
+                {
+                    id: 'HD4', name: 'HELLDIVER CORPS. 4', 
+                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
+					spawnDay: 5, // This unit will be hidden until Day 4
+                    positions: [ 
+                        null, //0
+                        null, //1
+                        null, //2
+                        null, //3
+                        null, //4
+                        [730, 192], //5
+                        [730, 192], //6
+                        [730, 192], //7
+                        [730, 192], //8
+                        [730, 192] //9
+                    ]
+                },
+				{
+                    id: 'ammo cache1', name: 'AMMO CACHE', 
+                    iconUrl: 'icons/ammo cache red.svg',
+					spawnDay: 3, // This unit will be hidden until Day 4
+                    despawnDay: 3,
+                    positions: [ 
+                        null, //0
+                        null, //1
+                        null, //2
+                        [355, 934], //3
+                        null //4
+                        
+                    ]
+                },
+                {
+                    id: 'ammo cache2', name: 'AMMO CACHE', 
+                    iconUrl: 'icons/ammo cache blue.svg',
+					spawnDay: 4, // This unit will be hidden until Day 4
+                    despawnDay: 4,
+                    positions: [ 
+                        null, //0
+                        null, //1
+                        null, //2
+                        [355, 934], //3
+                        [355, 934], //4
+
                     ]
                 }
-				
 				
             ]
         };
@@ -348,24 +405,29 @@
     buttonElement.classList.add('active');
     tacticalOverlay.setUrl(battleData.days[dayIndex].overlayUrl);
 
-    // --- NEW LOGIC FOR SHOW/HIDE ---
+// --- NEW LOGIC FOR SHOW/HIDE (WITH DESPAWN) ---
     battleData.units.forEach(unit => {
         const marker = unitMarkers[unit.id];
         const spawnDay = unit.spawnDay || 0;
+        // If no despawnDay is set, we use 999 so it stays forever
+        const despawnDay = unit.despawnDay !== undefined ? unit.despawnDay : 999;
 
-        if (dayIndex >= spawnDay) {
-            // If the marker isn't on the map, add it
+        // Check if the current day falls within the unit's "life" window
+        const isAlive = dayIndex >= spawnDay && dayIndex <= despawnDay;
+
+        if (isAlive) {
+            // If the unit should be visible but isn't, add it
             if (!map.hasLayer(marker)) {
                 marker.addTo(map);
             }
             
-            // Move the marker to the new position
+            // Move the unit to its position for this day
             const newPos = unit.positions[dayIndex];
             if (newPos) {
                 marker.setLatLng(newPos);
             }
         } else {
-            // If it's before the spawn day, remove it from the map
+            // If the unit is dead/not arrived yet, remove it
             if (map.hasLayer(marker)) {
                 map.removeLayer(marker);
             }
