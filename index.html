@@ -27,7 +27,6 @@
 
         #map { flex-grow: 1; background-color: #1a1a1a; }
 
-        /* Animation for unit movement */
         .animated-unit {
             transition: transform 1.5s ease-in-out;
         }
@@ -35,35 +34,15 @@
         .unit-img {
             filter: drop-shadow(0 0 4px rgba(0,0,0,0.8));
         }
-        /* This will fade the marker in and out when added/removed */
+
         .leaflet-marker-icon {
             transition: transform 1.5s ease-in-out, opacity 0.5s ease-in-out;
-}
-
+        }
     </style>
 
-<!-- Primary Meta Tags -->
-<title>Battle For Cyberstan Interactive Map</title>
-<meta name="title" content="Battle For Cyberstan Interactive Map" />
-<meta name="description" content="An interactive map detailing the events of the battle for Cyberstan in Helldivers 2" />
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://adeafblindman.github.io/Cyberstan/" />
-<meta property="og:title" content="Battle For Cyberstan Interactive Map" />
-<meta property="og:description" content="An interactive map detailing the events of the battle for Cyberstan in Helldivers 2" />
-<meta property="og:image" content="https://raw.githubusercontent.com/adeafblindman/Cyberstan/refs/heads/main/assets/Thumbnail.webp" />
-
-<!-- X (Twitter) -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://adeafblindman.github.io/Cyberstan/" />
-<meta property="twitter:title" content="Battle For Cyberstan Interactive Map" />
-<meta property="twitter:description" content="An interactive map detailing the events of the battle for Cyberstan in Helldivers 2" />
-<meta property="twitter:image" content="https://raw.githubusercontent.com/adeafblindman/Cyberstan/refs/heads/main/assets/Thumbnail.webp" />
-
-<!-- Meta Tags Generated with https://metatags.io -->
-
-
+    <title>Battle For Cyberstan Interactive Map</title>
+    <meta name="title" content="Battle For Cyberstan Interactive Map" />
+    <meta name="description" content="An interactive map detailing the events of the battle for Cyberstan in Helldivers 2" />
 </head>
 <body>
 
@@ -86,596 +65,114 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // --- 1. DATA STRUCTURE ---
         const battleData = {
             days: [
-                { overlayUrl: './maps/BASE MAP.webp' }, //0
-				{ overlayUrl: './maps/BASE MAP.webp' }, //1
-                { overlayUrl: './maps/BASE MAP.webp' }, //2
-				{ overlayUrl: './maps/MAP-D3.webp' }, //3
-                { overlayUrl: './maps/MAP-D3.webp' }, //4 
-				{ overlayUrl: './maps/MAP-D5.webp' }, //5
-                { overlayUrl: './maps/MAP-D5.webp' }, //6
-				{ overlayUrl: './maps/MAP-D5.webp' }, //7
-                { overlayUrl: './maps/MAP-D8.webp' }, //8
-				{ overlayUrl: './maps/MAP-D8.webp' },  //9
-                { overlayUrl: './maps/MAP-D8.webp' }  //10
+                { overlayUrl: './maps/BASE MAP.webp' }, 
+                { overlayUrl: './maps/BASE MAP.webp' },
+                { overlayUrl: './maps/BASE MAP.webp' }, 
+                { overlayUrl: './maps/MAP-D3.webp' },
+                { overlayUrl: './maps/MAP-D3.webp' }, 
+                { overlayUrl: './maps/MAP-D5.webp' },
+                { overlayUrl: './maps/MAP-D5.webp' }, 
+                { overlayUrl: './maps/MAP-D5.webp' },
+                { overlayUrl: './maps/MAP-D8.webp' }, 
+                { overlayUrl: './maps/MAP-D8.webp' },
+                { overlayUrl: './maps/MAP-D8.webp' }
             ],
             units: [
-                
-				{
-                    id: '8th Army', name: '8th Army', 
-                    iconUrl: 'icons/8th Army - Infantry - Army.svg',
-					//spawnDay: 1, // This unit will be hidden until Day 4
-                    positions: [ 
-                       [110, 1136],  //0
-                       [136, 1045], //1
-                       [206, 898], //2
-                       [269, 761], //3
-                       [299, 728], //4
-                       [374, 666], //5
-                       [475, 640], //6
-                       [475, 640], //7
-                       [570, 610], //8
-                       [650, 610],  //9
-                       [650, 610]  //10
-                    ]
-                },
-                {
-                    id: '7th Army', name: '7th Army', 
-                    iconUrl: 'icons/7th Army - Infantry - Army.svg',
-					//spawnDay: 1, // This unit will be hidden until Day 4
-                    positions: [ 
-                       [110, 1136],  //0
-                       [74, 984], //1
-                       [51, 835], //2
-                       [131, 695], //3
-                       [174, 627], //4
-                       [241, 511], //5
-                       [361, 421], //6
-                       [361, 421], //7
-                       [562, 344], //8
-                       [562, 344],  //9
-                       [562, 344]  //10
-                    ]
-                },
-				{
-                    id: '68th ADD', name: '68th Air Assault Division', 
-                    iconUrl: 'icons/68th Air Assault Division - Air Assault with Organic Lift - Division.svg',
-					//spawnDay: 9, // This unit will be hidden until Day 4
-                    positions: [ 
-                        [110, 1136], //0
-                        [152, 1252], //1
-                        [208, 1319], //2
-                        [334, 1394], //3
-                        [359, 1498], //4
-                        [423, 1597], //5
-                        [494, 1620], //6
-                        [494, 1620], //7
-                        [541, 1647], //8
-                        [622, 1666], //9
-                        [622, 1666] //10
-                    ]
-                },
-				{
-                    id: '23rd ADD', name: '23rd Air Assault Division', 
-                    iconUrl: 'icons/23rd Air Assault Division - Air Assault with Organic Lift - Division.svg',
-					//spawnDay: 9, // This unit will be hidden until Day 4
-                    positions: [ 
-                        [110, 1136], //0
-                        [94, 1210], //1
-                        [177, 1299], //2
-                        [319, 1339], //3
-                        [395, 1343], //4
-                        [478, 1352], //5
-                        [546, 1376], //6
-                        [546, 1376], //7
-                        [602, 1370], //8
-                        [602, 1370],  //9
-                        [602, 1370]  //10
-                    ]
-                },
-				{
-                    id: '14th MAD', name: '14th Marine Assault Division', 
-                    iconUrl: 'icons/14th Marine Assault Division - Marine - Division.svg',
-					//spawnDay: 1, // This unit will be hidden until Day 4
-                    positions: [ 
-                        [110, 1136], //0
-                        [111, 1006], //1
-                        [107, 906], //2
-                        [176, 788], //3
-                        [207, 717], //4
-                        [282, 598], //5
-                        [408, 516], //6
-                        [408, 516], //7
-                        [459, 466], //8
-                        [459, 466],  //9
-                        [459, 466]  //10
-                    ]
-                },
-				{
-                    id: '77th MI', name: '77th Mobile Infantry', 
-                    iconUrl: 'icons/77th Mobile Infantry - Motorized.svg',
-					//spawnDay: 9, // This unit will be hidden until Day 4
-                    positions: [ 
-                        [74, 456], //0
-                        [198, 454], //1
-                        [308, 458], //2
-                        [198, 454], //3
-                        [122, 378], //4
-                        [122, 378], //5
-                        [122, 378], //6
-                        [122, 378], //7
-                        [122, 378], //8
-                        [122, 378],  //9
-                        [122, 378]  //10
-                    ]
-                },
-				{
-                    id: '4th Army', name: '4th Army', 
-                    iconUrl: 'icons/4TH ARMY - Infantry - Army.svg',
-					//spawnDay: 9, // This unit will be hidden until Day 4
-                    positions: [ 
-                        [110, 1136], //0
-                        [200, 1046], //1
-                        [284, 982], //2
-                        [342, 958], //3
-                        [362, 920], //4
-                        [422, 911], //5
-                        [512, 902], //6
-                        [512, 902], //7
-                        [582, 921], //8
-                        [682, 932]  //9
-                        [682, 932],  //10
-                    ]
-                },
-				{
-                    id: '3rd Army', name: '3rd Army', 
-                    iconUrl: 'icons/3rd Army - Infantry - Army.svg',
-					//spawnDay: 9, // This unit will be hidden until Day 4
-                    positions: [ 
-                        [110, 1136], //0
-                        [226, 1181], //1
-                        [298, 1248], //2
-                        [414, 1239], //3
-                        [460, 1172], //4
-                        [494, 1135], //5
-                        [536, 1131], //6
-                        [536, 1131], //7
-                        [620, 1120], //8
-                        [780, 1110],  //9
-                        [780, 1110]  //9
-                    ]
-                },
-				{
-                    id: '12th Armor', name: '12th Armor', 
-                    iconUrl: 'icons/12TH ARMOR - Armored_Mechanized_Tracked.svg',
-					spawnDay: 4, // This unit will be hidden until Day 4
-                    positions: [ 
-                        null, //0
-                        null, //1
-                        null, //2
-                        null, //3
-                        [362, 920], //4
-                        [330, 812], //5
-                        [452, 821], //6
-                        [496, 827], //7
-                        [611, 808], //8
-                        [672, 796],  //9
-                        [672, 796]  //10
-                    ]
-                },
-				
-				{
-                    id: '14th AR', name: '14th Air Recon', 
-                    iconUrl: 'icons/14th Air Recon - Reconnaissance.svg',
-					spawnDay: 8, // This unit will be hidden until Day 4
-                    positions: [ 
-                        null, //0
-                        null, //1
-                        null, //2
-                        null, //3
-                        null, //4
-                        null, //5
-                        null, //6
-                        null, //7
-                        [780, 1110], //8
-                        [860, 1282],  //9
-                        [860, 1282]  //10
-                    ]
-                },
-                {
-                    id: 'HD1', name: 'HELLDIVER CORPS. 1', 
-                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
-                    // Note: You need 10 coordinate sets here to match the 10 days!
-                    positions: [ 
-                        [110, 1136], //0
-                        [110, 1136], //1
-                        [110, 1136], //2
-                        [338, 812], //3
-                        [338, 812], //4
-                        [780, 1110], //5
-                        [780, 1110], //6
-                        [780, 1110], //7
-                        [900, 1666], //8
-                        [900, 1666], //9
-                        [900, 1666] //10
-                    ]
-                },
-                {
-                    id: 'HD2', name: 'HELLDIVER CORPS. 2', 
-                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
-                    positions: [ 
-                        [74, 456], //0
-                        [74, 456], //1
-                        [74, 456], //2
-                        [74, 456], //3
-                        [74, 456], //4
-                        [74, 456], //5
-                        [74, 456], //6
-                        [74, 456], //7
-                        [74, 456], //8
-                        [74, 456], //9
-                        [74, 456] //10
-                    ]
-                },
-				{
-                    id: 'HD3', name: 'HELLDIVER CORPS. 3', 
-                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
-					spawnDay: 3, // This unit will be hidden until Day 4
-                    positions: [ 
-                        null, //0
-                        null, //1
-                        null, //2
-                        [500, 1486], //3
-                        [500, 1486], //4
-                        [500, 1486], //5
-                        [500, 1486], //6
-                        [500, 1486], //7
-                        [500, 1486], //8
-                        [500, 1486], //9
-                        [500, 1486] //10
-                    ]
-                },
-                {
-                    id: 'HD4', name: 'HELLDIVER CORPS. 4', 
-                    iconUrl: 'icons/HELLDIVER CORPS SKULL.svg',
-					spawnDay: 5, // This unit will be hidden until Day 4
-                    positions: [ 
-                        null, //0
-                        null, //1
-                        null, //2
-                        null, //3
-                        null, //4
-                        [730, 192], //5
-                        [730, 192], //6
-                        [730, 192], //7
-                        [730, 192], //8
-                        [730, 192], //9
-                        [730, 192] //10
-                    ]
-                },
-				{
-                    id: 'ammo cache1', name: 'AMMO CACHE', 
-                    iconUrl: 'icons/ammo cache red.svg',
-					spawnDay: 3, // This unit will be hidden until Day 4
-                    despawnDay: 3,
-                    positions: [ 
-                        null, //0
-                        null, //1
-                        null, //2
-                        [355, 934], //3
-                        null //4
-                        
-                    ]
-                },
-                {
-                    id: 'ammo cache2', name: 'AMMO CACHE', 
-                    iconUrl: 'icons/ammo cache blue.svg',
-					spawnDay: 4, // This unit will be hidden until Day 4
-                    despawnDay: 4,
-                    positions: [ 
-                        null, //0
-                        null, //1
-                        null, //2
-                        [355, 934], //3
-                        [355, 934], //4
-
-                    ]
-                },
-                {
-                    id: 'arty 1', name: '501st SEAF Artillery', 
-                    iconUrl: 'icons/Artillery - Heavy.svg',
-					spawnDay: 7, // This unit will be hidden until Day 4
-                    //despawnDay: 4,
-                    positions: [ 
-                        [466, 1018], //7
-                        [466, 1018], //8
-                        [466, 1018], //9
-                        [466, 1018] //10
-
-                    ]
-                },
-                {
-                    id: 'arty 2', name: '56th Siege Regiment', 
-                    iconUrl: 'icons/Artillery - Heavy.svg',
-					spawnDay: 7, // This unit will be hidden until Day 4
-                    //despawnDay: 4,
-                    positions: [ 
-                        [458, 1244], //7
-                        [458, 1244], //8
-                        [458, 1244], //9
-                        [458, 1244] //19
-
-                    ]
-                },
-                                {
-                    id: 'arty 3', name: '2nd Artillery Company', 
-                    iconUrl: 'icons/Artillery - Heavy.svg',
-					spawnDay: 7, // This unit will be hidden until Day 4
-                    //despawnDay: 4,
-                    positions: [ 
-                        [478, 778], //7
-                        [478, 778], //8
-                        [478, 778], //9
-                        [478, 778] //10
-
-                    ]
-                },
-                {
-                    id: '22nd Cavalry', name: '22nd Cavalry', 
-                    iconUrl: 'icons/22nd CAV - Reconnaissance_Cavalry_Scout - Company.svg',
-					spawnDay: 8, // This unit will be hidden until Day 4
-                    positions: [ 
-                        null, //0
-                        [500, 500], //1
-                        [500, 500], //2
-                        [500, 500], //3
-                        [500, 500], //4
-                        [500, 500], //5
-                        [500, 500], //6
-                        [500, 500], //7
-                        [780, 1110], //8
-                        [810, 1341],  //9
-                        [810, 1341]  //10
-                    ]
-                },
-
-
-// --- AUTOMATON UNITS ---
-                {
-                    id: 'AUTO WEST', name: 'AUTOMATONS', 
-                    iconUrl: 'icons/CYBORGS ICON.webp',
-					//spawnDay: 8, // This unit will be hidden until Day 4
-                    positions: [ 
-                        [236, 466], //0
-                        [254, 388], //1
-                        [350, 370], //2
-                        [262, 450], //3
-                        [262, 450], //4
-                        [262, 450], //5
-                        [220, 348], //6
-                        [220, 348], //7
-                        [220, 348], //8
-                        [220, 348],  //9
-                        [220, 348]  //10
-                    ]
-                },
-                {
-                    id: 'AUTO CENT', name: 'AUTOMATONS', 
-                    iconUrl: 'icons/CYBORGS ICON.webp',
-					//spawnDay: 0, // This unit will be hidden until Day 4
-                    despawnDay: 8,
-                    positions: [ 
-                        [272, 1130], //0
-                        [314, 1136], //1
-                        [354, 1130], //2
-                        [420, 1112], //3
-                        [528, 1136], //4
-                        [576, 1126], //5
-                        [606, 1128], //6
-                        [654, 1129], //7
-                        [721, 1117], //8
-                        [820, 1422],  //9
-                        [940, 1614]  //10
-                    ]
-                },
-                {
-                    id: 'AUTO OMNIPARITUS', name: 'AUTOMATONS', 
-                    iconUrl: 'icons/CYBORGS ICON.webp',
-					//spawnDay: 0, // This unit will be hidden until Day 4
-                    despawnDay: 8,
-                    positions: [ 
-                        [168, 1034], //0
-                        [234, 992], //1
-                        [328, 926], //2
-                        [394, 900], //3
-                        [438, 906], //4
-                        [512, 892], //5
-                        [570, 860], //6
-                        [598, 850], //7
-                        [682, 868], //8
-                        [786, 786],  //9
-                        [786, 786]  //10
-                    ]
-                },
-                {
-                    id: 'AUTO OMNIPARITUS SOUTH', name: 'AUTOMATONS', 
-                    iconUrl: 'icons/CYBORGS ICON.webp',
-					//spawnDay: 0, // This unit will be hidden until Day 4
-                    //despawnDay: 8,
-                    positions: [ 
-                        [168, 1034], //0
-                        [173, 945], //1
-                        [186, 824], //2
-                        [261, 684], //3
-                        [300, 653], //4
-                        [350, 590], //5
-                        [474, 506], //6
-                        [494, 476], //7
-                        [480, 216], //8
-                        [842, 1742],  //9
-                        [842, 1742]  //10
-                    ]
-                },
-                {
-                    id: 'AUTO SOLIDARITET REINFORCE', name: 'AUTOMATONS', 
-                    iconUrl: 'icons/CYBORGS ICON.webp',
-					//spawnDay: 0, // This unit will be hidden until Day 4
-                    //despawnDay: 8,
-                    positions: [ 
-                        [168, 1034], //0
-                        [114, 914], //1
-                        [94, 730], //2
-                        [106, 574], //3
-                        [120, 512], //4
-                        [120, 512], //5
-                        [154, 530], //6
-                        [154, 530], //7
-                        [154, 530], //8
-                        [154, 530],  //9
-                        [154, 530]  //10
-                    ]
-                },
-                
-                {
-                    id: 'AUTO STAR JETS', name: 'JET BRIGADE', 
-                    iconUrl: 'icons/Jet_Brigade_Icon.webp',
-					spawnDay: 5, // This unit will be hidden until Day 4
-                    //despawnDay: 8,
-                    positions: [ 
-                        null, //0
-                        null, //1
-                        null, //2
-                        null, //3
-                        [792, 1196], //4
-                        [792, 1196], //5
-                        [792, 1196], //6
-                        [792, 1196], //7
-                        [918, 1602], //8
-                        [918, 1602],  //9
-                        [918, 1602]  //10
-                    ]
-                },
-                {
-                    id: 'AUTO 911 FIRE', name: 'THE INCINERATION CORPS.', 
-                    iconUrl: 'icons/THE INCINERATION CORPS.webp',
-					spawnDay: 5, // This unit will be hidden until Day 4
-                    //despawnDay: 8,
-                    positions: [ 
-                        null, //0
-                        null, //1
-                        null, //2
-                        null, //3
-                        [758, 130], //4
-                        [758, 130], //5
-                        [758, 130], //6
-                        [758, 130], //7
-                        [758, 130], //8
-                        [948, 1736],  //9
-                        [948, 1736]  //10
-                    ]
-                }
-
-
-				
+                { id: '8th Army', name: '8th Army', iconUrl: 'icons/8th Army - Infantry - Army.svg', positions: [[110, 1136],[136, 1045],[206, 898],[269, 761],[299, 728],[374, 666],[475, 640],[475, 640],[570, 610],[650, 610],[650, 610]] },
+                { id: '7th Army', name: '7th Army', iconUrl: 'icons/7th Army - Infantry - Army.svg', positions: [[110, 1136],[74, 984],[51, 835],[131, 695],[174, 627],[241, 511],[361, 421],[361, 421],[562, 344],[562, 344],[562, 344]] },
+                { id: '68th ADD', name: '68th Air Assault Division', iconUrl: 'icons/68th Air Assault Division - Air Assault with Organic Lift - Division.svg', positions: [[110, 1136],[152, 1252],[208, 1319],[334, 1394],[359, 1498],[423, 1597],[494, 1620],[494, 1620],[541, 1647],[622, 1666],[622, 1666]] },
+                { id: '23rd ADD', name: '23rd Air Assault Division', iconUrl: 'icons/23rd Air Assault Division - Air Assault with Organic Lift - Division.svg', positions: [[110, 1136],[94, 1210],[177, 1299],[319, 1339],[395, 1343],[478, 1352],[546, 1376],[546, 1376],[602, 1370],[602, 1370],[602, 1370]] },
+                { id: '14th MAD', name: '14th Marine Assault Division', iconUrl: 'icons/14th Marine Assault Division - Marine - Division.svg', positions: [[110, 1136],[111, 1006],[107, 906],[176, 788],[207, 717],[282, 598],[408, 516],[408, 516],[459, 466],[459, 466],[459, 466]] },
+                { id: '77th MI', name: '77th Mobile Infantry', iconUrl: 'icons/77th Mobile Infantry - Motorized.svg', positions: [[74, 456],[198, 454],[308, 458],[198, 454],[122, 378],[122, 378],[122, 378],[122, 378],[122, 378],[122, 378],[122, 378]] },
+                { id: '4th Army', name: '4th Army', iconUrl: 'icons/4TH ARMY - Infantry - Army.svg', positions: [[110, 1136],[200, 1046],[284, 982],[342, 958],[362, 920],[422, 911],[512, 902],[512, 902],[582, 921],[682, 932], [682, 932]] },
+                { id: '3rd Army', name: '3rd Army', iconUrl: 'icons/3rd Army - Infantry - Army.svg', positions: [[110, 1136],[226, 1181],[298, 1248],[414, 1239],[460, 1172],[494, 1135],[536, 1131],[536, 1131],[620, 1120],[780, 1110], [780, 1110]] },
+                { id: '12th Armor', name: '12th Armor', iconUrl: 'icons/12TH ARMOR - Armored_Mechanized_Tracked.svg', spawnDay: 4, positions: [null, null, null, null, [362, 920], [330, 812], [452, 821], [496, 827], [611, 808], [672, 796], [672, 796]] },
+                { id: '14th AR', name: '14th Air Recon', iconUrl: 'icons/14th Air Recon - Reconnaissance.svg', spawnDay: 8, positions: [null, null, null, null, null, null, null, null, [780, 1110], [860, 1282], [860, 1282]] },
+                { id: 'HD1', name: 'HELLDIVER CORPS. 1', iconUrl: 'icons/HELLDIVER CORPS SKULL.svg', positions: [[110, 1136],[110, 1136],[110, 1136],[338, 812],[338, 812],[780, 1110],[780, 1110],[780, 1110],[900, 1666],[900, 1666],[900, 1666]] },
+                { id: 'HD2', name: 'HELLDIVER CORPS. 2', iconUrl: 'icons/HELLDIVER CORPS SKULL.svg', positions: [[74, 456],[74, 456],[74, 456],[74, 456],[74, 456],[74, 456],[74, 456],[74, 456],[74, 456],[74, 456],[74, 456]] },
+                { id: 'HD3', name: 'HELLDIVER CORPS. 3', iconUrl: 'icons/HELLDIVER CORPS SKULL.svg', spawnDay: 3, positions: [null, null, null, [500, 1486], [500, 1486], [500, 1486], [500, 1486], [500, 1486], [500, 1486], [500, 1486], [500, 1486]] },
+                { id: 'HD4', name: 'HELLDIVER CORPS. 4', iconUrl: 'icons/HELLDIVER CORPS SKULL.svg', spawnDay: 5, positions: [null, null, null, null, null, [730, 192], [730, 192], [730, 192], [730, 192], [730, 192], [730, 192]] },
+                { id: 'ammo cache1', name: 'AMMO CACHE', iconUrl: 'icons/ammo cache red.svg', spawnDay: 3, despawnDay: 3, positions: [null, null, null, [355, 934], null] },
+                { id: 'ammo cache2', name: 'AMMO CACHE', iconUrl: 'icons/ammo cache blue.svg', spawnDay: 4, despawnDay: 4, positions: [null, null, null, [355, 934], [355, 934]] },
+                { id: 'arty 1', name: '501st SEAF Artillery', iconUrl: 'icons/Artillery - Heavy.svg', spawnDay: 7, positions: [null, null, null, null, null, null, null, [466, 1018], [466, 1018], [466, 1018], [466, 1018]] },
+                { id: 'arty 2', name: '56th Siege Regiment', iconUrl: 'icons/Artillery - Heavy.svg', spawnDay: 7, positions: [null, null, null, null, null, null, null, [458, 1244], [458, 1244], [458, 1244], [458, 1244]] },
+                { id: 'arty 3', name: '2nd Artillery Company', iconUrl: 'icons/Artillery - Heavy.svg', spawnDay: 7, positions: [null, null, null, null, null, null, null, [478, 778], [478, 778], [478, 778], [478, 778]] },
+                { id: '22nd Cavalry', name: '22nd Cavalry', iconUrl: 'icons/22nd CAV - Reconnaissance_Cavalry_Scout - Company.svg', spawnDay: 8, positions: [null, null, null, null, null, null, null, null, [780, 1110], [810, 1341], [810, 1341]] },
+                { id: 'AUTO WEST', name: 'AUTOMATONS', iconUrl: 'icons/CYBORGS ICON.webp', positions: [[236, 466],[254, 388],[350, 370],[262, 450],[262, 450],[262, 450],[220, 348],[220, 348],[220, 348],[220, 348],[220, 348]] },
+                { id: 'AUTO CENT', name: 'AUTOMATONS', iconUrl: 'icons/CYBORGS ICON.webp', despawnDay: 8, positions: [[272, 1130],[314, 1136],[354, 1130],[420, 1112],[528, 1136],[576, 1126],[606, 1128],[654, 1129],[721, 1117],[820, 1422],[940, 1614]] },
+                { id: 'AUTO OMNIPARITUS', name: 'AUTOMATONS', iconUrl: 'icons/CYBORGS ICON.webp', despawnDay: 8, positions: [[168, 1034],[234, 992],[328, 926],[394, 900],[438, 906],[512, 892],[570, 860],[598, 850],[682, 868],[786, 786],[786, 786]] },
+                { id: 'AUTO OMNIPARITUS SOUTH', name: 'AUTOMATONS', iconUrl: 'icons/CYBORGS ICON.webp', positions: [[168, 1034],[173, 945],[186, 824],[261, 684],[300, 653],[350, 590],[474, 506],[494, 476],[480, 216],[842, 1742],[842, 1742]] },
+                { id: 'AUTO SOLIDARITET REINFORCE', name: 'AUTOMATONS', iconUrl: 'icons/CYBORGS ICON.webp', positions: [[168, 1034],[114, 914],[94, 730],[106, 574],[120, 512],[120, 512],[154, 530],[154, 530],[154, 530],[154, 530],[154, 530]] },
+                { id: 'AUTO STAR JETS', name: 'JET BRIGADE', iconUrl: 'icons/Jet_Brigade_Icon.webp', spawnDay: 5, positions: [null, null, null, null, [792, 1196], [792, 1196], [792, 1196], [792, 1196], [918, 1602], [918, 1602], [918, 1602]] },
+                { id: 'AUTO 911 FIRE', name: 'THE INCINERATION CORPS.', iconUrl: 'icons/THE INCINERATION CORPS.webp', spawnDay: 5, positions: [null, null, null, null, [758, 130], [758, 130], [758, 130], [758, 130], [758, 130], [948, 1736], [948, 1736]] }
             ]
         };
 
-        // --- 2. MAP SETUP ---
         const bounds = [[0, 0], [1080, 1920]]; 
-        const map = L.map('map', {
-            crs: L.CRS.Simple,
-            minZoom: -1,
-            maxZoom: 2,
-            maxBounds: bounds
-        });
-
-        // Background Base Layer (Your assets/Background.png)
+        const map = L.map('map', { crs: L.CRS.Simple, minZoom: -1, maxZoom: 2, maxBounds: bounds });
         L.imageOverlay('assets/Background.png', bounds).addTo(map);
-
-        // Tactical Overlay (The changing JPGs)
-        let tacticalOverlay = L.imageOverlay(battleData.days[0].overlayUrl, bounds, { 
-            opacity: 1, // Adjust if you want to see the background through it
-            zIndex: 10 
-        }).addTo(map);
-
+        let tacticalOverlay = L.imageOverlay(battleData.days[0].overlayUrl, bounds, { opacity: 1, zIndex: 10 }).addTo(map);
         map.fitBounds(bounds);
 
-        // --- 3. INITIALIZE STATIC UI ELEMENTS ---
-        const nameIcon = L.icon({
-            iconUrl: 'assets/NAME.png',
-            iconSize: [640, 39],
-            iconAnchor: [0, 0] // Top left
-        });
-
+        const nameIcon = L.icon({ iconUrl: 'assets/NAME.png', iconSize: [640, 39], iconAnchor: [0, 0] });
         L.marker([0, 0], { icon: nameIcon, interactive: false, zIndexOffset: 1000 }).addTo(map);
 
-        // --- 4. INITIALIZE UNITS ---
         const unitMarkers = {};
-
         battleData.units.forEach(unit => {
-    const icon = L.divIcon({
-        className: 'animated-unit',
-        html: `<img src="${unit.iconUrl}" class="unit-img" style="width: 40px; height: 45px;" />`, 
-        iconSize: [40, 45],
-        iconAnchor: [20, 15]
-    });
-
-    const marker = L.marker(unit.positions[0] || [0,0], { icon: icon, zIndexOffset: 500 });
-    marker.bindTooltip(unit.name, { direction: 'top', offset: [0, -15] });
-    
-    unitMarkers[unit.id] = marker;
-
-    // Only add to map if spawnDay is 0 (or undefined)
-    if (!unit.spawnDay || unit.spawnDay === 0) {
-        marker.addTo(map);
-    }
-});
-
-        // --- 5. TOGGLE LOGIC ---
-        function changeDay(dayIndex, buttonElement) {
-    // ... UI Toggle logic remains the same ...
-    document.querySelectorAll('.day-btn').forEach(btn => btn.classList.remove('active'));
-    buttonElement.classList.add('active');
-    tacticalOverlay.setUrl(battleData.days[dayIndex].overlayUrl);
-
-// --- NEW LOGIC FOR SHOW/HIDE (WITH DESPAWN) ---
-    battleData.units.forEach(unit => {
-        const marker = unitMarkers[unit.id];
-        const spawnDay = unit.spawnDay || 0;
-        // If no despawnDay is set, we use 999 so it stays forever
-        const despawnDay = unit.despawnDay !== undefined ? unit.despawnDay : 999;
-
-        // Check if the current day falls within the unit's "life" window
-        const isAlive = dayIndex >= spawnDay && dayIndex <= despawnDay;
-
-        if (isAlive) {
-            // If the unit should be visible but isn't, add it
-            if (!map.hasLayer(marker)) {
-                marker.addTo(map);
-            }
-            
-            // Move the unit to its position for this day
-            const newPos = unit.positions[dayIndex];
-            if (newPos) {
-                marker.setLatLng(newPos);
-            }
-        } else {
-            // If the unit is dead/not arrived yet, remove it
-            if (map.hasLayer(marker)) {
-                map.removeLayer(marker);
-            }
-        }
-    });
-}
-
-        // Helper: Click map to get coordinates in console
-        map.on('click', (e) => {
-            console.log(`[${Math.round(e.latlng.lat)}, ${Math.round(e.latlng.lng)}]`);
+            const icon = L.divIcon({
+                className: 'animated-unit',
+                html: `<img src="${unit.iconUrl}" class="unit-img" style="width: 40px; height: 45px;" />`, 
+                iconSize: [40, 45], iconAnchor: [20, 15]
+            });
+            const marker = L.marker(unit.positions[0] || [0,0], { icon: icon, zIndexOffset: 500 });
+            marker.bindTooltip(unit.name, { direction: 'top', offset: [0, -15] });
+            unitMarkers[unit.id] = marker;
+            if (!unit.spawnDay || unit.spawnDay === 0) marker.addTo(map);
         });
+
+        function changeDay(dayIndex, buttonElement) {
+            document.querySelectorAll('.day-btn').forEach(btn => btn.classList.remove('active'));
+            buttonElement.classList.add('active');
+            tacticalOverlay.setUrl(battleData.days[dayIndex].overlayUrl);
+
+            battleData.units.forEach(unit => {
+                const marker = unitMarkers[unit.id];
+                const spawnDay = unit.spawnDay || 0;
+                const despawnDay = unit.despawnDay !== undefined ? unit.despawnDay : 999;
+                const isAlive = dayIndex >= spawnDay && dayIndex <= despawnDay;
+
+                if (isAlive) {
+                    if (!map.hasLayer(marker)) marker.addTo(map);
+                    const newPos = unit.positions[dayIndex];
+                    if (newPos) {
+                        const wrapAroundUnits = ['AUTO 911 FIRE', 'AUTO OMNIPARITUS SOUTH']; 
+                        if (wrapAroundUnits.includes(unit.id) && dayIndex === 9) {
+                            const day8_Y = unit.positions[8][0];
+                            const day9_Y = newPos[0];
+                            marker.setLatLng([day8_Y, -50]); 
+                            setTimeout(() => {
+                                if (marker._icon) {
+                                    marker._icon.style.transition = 'none';
+                                    marker.setLatLng([day9_Y, 1970]); 
+                                    void marker._icon.offsetWidth; 
+                                    marker._icon.style.transition = 'transform 1.5s ease-in-out';
+                                    marker.setLatLng(newPos);
+                                }
+                            }, 1500);
+                        } else {
+                            if (marker._icon) marker._icon.style.transition = 'transform 1.5s ease-in-out';
+                            marker.setLatLng(newPos);
+                        }
+                    }
+                } else {
+                    if (map.hasLayer(marker)) map.removeLayer(marker);
+                }
+            });
+        }
+
+        map.on('click', (e) => { console.log(`[${Math.round(e.latlng.lat)}, ${Math.round(e.latlng.lng)}]`); });
     </script>
 </body>
-
 </html>
-
