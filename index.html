@@ -40,26 +40,22 @@
         }
     </style>
 
-<!-- Primary Meta Tags -->
 <title>Battle For Cyberstan Interactive Map</title>
 <meta name="title" content="Battle For Cyberstan Interactive Map" />
 <meta name="description" content="An interactive map detailing the events of the battle for Cyberstan in Helldivers 2" />
 
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://adeafblindman.github.io/Cyberstan/" />
 <meta property="og:title" content="Battle For Cyberstan Interactive Map" />
 <meta property="og:description" content="An interactive map detailing the events of the battle for Cyberstan in Helldivers 2" />
 <meta property="og:image" content="https://raw.githubusercontent.com/adeafblindman/Cyberstan/refs/heads/main/assets/Thumbnail.webp" />
 
-<!-- X (Twitter) -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content="https://adeafblindman.github.io/Cyberstan/" />
 <meta property="twitter:title" content="Battle For Cyberstan Interactive Map" />
 <meta property="twitter:description" content="An interactive map detailing the events of the battle for Cyberstan in Helldivers 2" />
 <meta property="twitter:image" content="https://raw.githubusercontent.com/adeafblindman/Cyberstan/refs/heads/main/assets/Thumbnail.webp" />
 
-<!-- Meta Tags Generated with https://metatags.io -->
 </head>
 <body>
 
@@ -84,16 +80,11 @@
     <script>
         const battleData = {
             days: [
-                { overlayUrl: './maps/BASE MAP.webp' }, 
-                { overlayUrl: './maps/BASE MAP.webp' },
-                { overlayUrl: './maps/BASE MAP.webp' }, 
-                { overlayUrl: './maps/MAP-D3.webp' },
-                { overlayUrl: './maps/MAP-D3.webp' }, 
-                { overlayUrl: './maps/MAP-D5.webp' },
-                { overlayUrl: './maps/MAP-D5.webp' }, 
-                { overlayUrl: './maps/MAP-D5.webp' },
-                { overlayUrl: './maps/MAP-D8.webp' }, 
-                { overlayUrl: './maps/MAP-D8.webp' },
+                { overlayUrl: './maps/BASE MAP.webp' }, { overlayUrl: './maps/BASE MAP.webp' },
+                { overlayUrl: './maps/BASE MAP.webp' }, { overlayUrl: './maps/MAP-D3.webp' },
+                { overlayUrl: './maps/MAP-D3.webp' }, { overlayUrl: './maps/MAP-D5.webp' },
+                { overlayUrl: './maps/MAP-D5.webp' }, { overlayUrl: './maps/MAP-D5.webp' },
+                { overlayUrl: './maps/MAP-D8.webp' }, { overlayUrl: './maps/MAP-D8.webp' },
                 { overlayUrl: './maps/MAP-D8.webp' }
             ],
             units: [
@@ -125,18 +116,70 @@
                 { id: 'AUTO CAMRAT FOR', name: 'AUTOMATONS', iconUrl: 'icons/CYBORGS ICON.webp', positions: [[484, 62],[484, 62],[484, 62],[484, 62],[484, 62],[484, 62],[484, 62],[484, 62],[484, 62],[904, 1730],[904, 1730]] },
                 { id: 'AUTO STAR JETS', name: 'JET BRIGADE', iconUrl: 'icons/Jet_Brigade_Icon.webp', spawnDay: 5, positions: [null, null, null, null, [792, 1196], [792, 1196], [792, 1196], [792, 1196], [918, 1602], [918, 1602], [918, 1602]] },
                 { id: 'AUTO 911 FIRE', name: 'THE INCINERATION CORPS.', iconUrl: 'icons/THE INCINERATION CORPS.webp', spawnDay: 5, positions: [null, null, null, null, [758, 130], [758, 130], [758, 130], [758, 130], [758, 130], [948, 1736], [948, 1736]] }
+            ],
+            lines: [
+                {
+                    id: 'eastern-front',
+                    color: '#000000',
+                    positions: [
+                        [[103, 1069], [186, 1047], [257, 1131],[201, 1202],[162, 1198],[113, 1179],[103, 1069]], // Day 0
+                        [[5, 933], [95, 955], [156, 992],[223, 1005],[276, 1133],[240, 1227],[178, 1287],[120, 1299],[0, 1298]], // Day 1
+                        [[5, 776],[68, 802],[101, 852],[217, 844],[305, 947],[331, 1062],[303, 1135],[333, 1244],[303, 1291],[233, 1357],[155, 1382],[2, 1391]], // Day 2
+                        [[350, 200], [550, 600], [350, 1000]], // Day 3
+                        [[400, 200], [600, 600], [400, 1000]], // Day 4
+                        [[450, 200], [650, 600], [450, 1000]], // Day 5
+                        [[500, 200], [700, 600], [500, 1000]], // Day 6
+                        [[550, 200], [750, 600], [550, 1000]], // Day 7
+                        [[600, 200], [800, 600], [600, 1000]], // Day 8
+                        [[650, 200], [850, 600], [650, 1000]], // Day 9
+                        [[700, 200], [900, 600], [700, 1000]]  // Day 10
+                    ]
+                },
+                {
+                    id: 'western-front',
+                    color: '#000000',
+                    positions: [
+                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 0
+                        [[152, 335], [218, 386], [228, 514], [182, 592], [94, 603], [35, 512], [152, 335]], // Day 1
+                        [[215, 290], [332, 380], [330, 580], [210, 680], [100, 620], [215, 290]], // Day 2
+                        [[250, 250], [380, 350], [380, 650], [250, 750]], // Day 3 
+                        [[280, 220], [410, 320], [410, 680], [280, 780]], // Day 4 
+                        [[310, 190], [440, 290], [440, 710], [310, 810]], // Day 5 
+                        [[340, 160], [470, 260], [470, 740], [340, 840]], // Day 6 
+                        [[370, 130], [500, 230], [500, 770], [370, 870]], // Day 7 
+                        [[400, 100], [530, 200], [530, 800], [400, 900]], // Day 8 
+                        [[430, 70], [560, 170], [560, 830], [430, 930]],  // Day 9 
+                        [[460, 40], [590, 140], [590, 860], [460, 960]]   // Day 10 
+                    ]
+                }
             ]
         };
 
         const bounds = [[0, 0], [1080, 1920]]; 
         const map = L.map('map', { crs: L.CRS.Simple, minZoom: -1, maxZoom: 2, maxBounds: bounds });
+        
         L.imageOverlay('assets/Background.png', bounds).addTo(map);
         let tacticalOverlay = L.imageOverlay(battleData.days[0].overlayUrl, bounds, { opacity: 1, zIndex: 10 }).addTo(map);
         map.fitBounds(bounds);
 
+        // Name overlay Marker
         const nameIcon = L.icon({ iconUrl: 'assets/NAME.png', iconSize: [640, 39], iconAnchor: [0, 0] });
         L.marker([0, 0], { icon: nameIcon, interactive: false, zIndexOffset: 1000 }).addTo(map);
 
+        // --- Initialize Lines ---
+        const lineLayers = {};
+        battleData.lines.forEach(line => {
+            const polyline = L.polyline(line.positions[0], {
+                color: line.color,
+                weight: 5,
+                opacity: 0.6,
+                dashArray: '10, 15', // Tactical dashed look
+                interactive: false
+            }).addTo(map);
+            lineLayers[line.id] = polyline;
+        });
+
+        // --- Initialize Units ---
         const unitMarkers = {};
         battleData.units.forEach(unit => {
             const icon = L.divIcon({
@@ -155,6 +198,16 @@
             buttonElement.classList.add('active');
             tacticalOverlay.setUrl(battleData.days[dayIndex].overlayUrl);
 
+            // --- Update Lines ---
+            battleData.lines.forEach(line => {
+                const layer = lineLayers[line.id];
+                const newCoords = line.positions[dayIndex];
+                if (layer && newCoords) {
+                    layer.setLatLngs(newCoords);
+                }
+            });
+
+            // --- Update Units (with wrap-around logic) ---
             battleData.units.forEach(unit => {
                 const marker = unitMarkers[unit.id];
                 const spawnDay = unit.spawnDay || 0;
@@ -193,5 +246,4 @@
         map.on('click', (e) => { console.log(`[${Math.round(e.latlng.lat)}, ${Math.round(e.latlng.lng)}]`); });
     </script>
 </body>
-
 </html>
