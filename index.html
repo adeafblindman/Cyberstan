@@ -38,6 +38,56 @@
         .leaflet-marker-icon {
             transition: transform 1.5s ease-in-out, opacity 0.5s ease-in-out;
         }
+
+/* --- Planetary Bombardment Animations --- */
+.orbital-strike-container {
+    width: 100px;
+    height: 100px;
+    pointer-events: none; /* Let mouse clicks pass through to the map */
+}
+
+/* The falling artillery shell */
+.orbital-beam {
+    position: absolute;
+    left: 45px; /* Centered in the 100px container */
+    bottom: 50px; /* Drops down to the center point */
+    width: 6px;
+    height: 600px; /* Long streak to look like it's coming from orbit */
+    background: linear-gradient(to bottom, rgba(255,150,0,0), #ff8800, #ffffff);
+    border-radius: 10px;
+    transform-origin: bottom center;
+    animation: strike-fall 0.4s ease-in forwards;
+}
+
+/* The explosion blast */
+.orbital-blast {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #ffffff 5%, #ffaa00 20%, #cc0000 50%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0.1);
+    /* Delays the explosion until the shell finishes falling (0.4s) */
+    animation: strike-explode 0.8s ease-out 0.4s forwards; 
+}
+
+@keyframes strike-fall {
+    0% { transform: translateY(-2000px) scaleY(2); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(0) scaleY(1); opacity: 0; }
+}
+
+@keyframes strike-explode {
+    0% { opacity: 1; transform: scale(0.2); }
+    40% { opacity: 0.8; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(1.8); }
+}
+
+
+
     </style>
 
 <title>Battle For Cyberstan Interactive Map</title>
@@ -59,6 +109,8 @@
 </head>
 <body>
 
+
+    
     <div id="controls">
         <strong style="margin-right: 15px;">Operations Calendar:</strong>
         <button class="day-btn active" onclick="changeDay(0, this)">C Day 0</button>
@@ -680,10 +732,66 @@
     if (!unit.spawnDay || unit.spawnDay === 0) marker.addTo(map);
 });
 
+// --- Planetary Bombardment Logic ---
+let bombardmentInterval = null;
+
+function startBombardment() {
+    if (bombardmentInterval) return; // Prevent multiple loops from running
+    
+    // Drop a new shell every 300 milliseconds
+    bombardmentInterval = setInterval(() => {
+        // Generate random coordinates within your map bounds (Lat: 0-1080, Lng: 0-1920)
+        const lat = Math.random() * 1080;
+        const lng = Math.random() * 1920;
+
+        const strikeIcon = L.divIcon({
+            className: 'orbital-strike-marker',
+            html: `
+                <div class="orbital-strike-container">
+                    <div class="orbital-beam"></div>
+                    <div class="orbital-blast"></div>
+                </div>
+            `,
+            iconSize: [100, 100],
+            iconAnchor: [50, 50] // Anchors the dead-center of the explosion to the coordinate
+        });
+
+        const strikeMarker = L.marker([lat, lng], { 
+            icon: strikeIcon, 
+            interactive: false,
+            zIndexOffset: 1500 // Keeps explosions above the units
+        }).addTo(map);
+
+        // Remove the marker from the map after the animations finish (0.4s fall + 0.8s explode = 1.2s total)
+        setTimeout(() => {
+            if (map.hasLayer(strikeMarker)) {
+                map.removeLayer(strikeMarker);
+            }
+        }, 1200);
+
+    }, 300); 
+}
+
+function stopBombardment() {
+    if (bombardmentInterval) {
+        clearInterval(bombardmentInterval);
+        bombardmentInterval = null;
+    }
+}
+
+
+
+//change day function
         function changeDay(dayIndex, buttonElement) {
             document.querySelectorAll('.day-btn').forEach(btn => btn.classList.remove('active'));
             buttonElement.classList.add('active');
             tacticalOverlay.setUrl(battleData.days[dayIndex].overlayUrl);
+            // --- Trigger Bombardment ---
+if (dayIndex === 10 || dayIndex === 11) {
+    startBombardment();
+} else {
+    stopBombardment();
+}
 
             // --- Update Lines ---
             battleData.lines.forEach(line => {
