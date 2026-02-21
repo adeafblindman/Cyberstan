@@ -678,7 +678,9 @@
         };
 // bounds are set here
         const bounds = [[0, 0], [1080, 1920]]; 
-        const map = L.map('map', { crs: L.CRS.Simple, minZoom: -1, maxZoom: 2, maxBounds: bounds });
+        const map = L.map('map', { crs: L.CRS.Simple, minZoom: -1, maxZoom: 2, maxBounds: bounds, attributionControl: true });
+        map.attributionControl.setPrefix('Leaflet'); // Optional: Keeps the Leaflet link
+        map.attributionControl.addAttribution('ADeafBlindMan, PhantomXT, Chechin, Helldivers Companion, helldivers.wiki.gg');
         
         L.imageOverlay('assets/Background.png', bounds).addTo(map);
         let tacticalOverlay = L.imageOverlay(battleData.days[0].overlayUrl, bounds, { opacity: 1, zIndex: 10 }).addTo(map);
