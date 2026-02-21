@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animated Helldivers Battle Map</title>
-    
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
     <style>
@@ -89,6 +89,13 @@
 
 
     </style>
+
+    <script>
+    // Redirect if screen width is mobile-sized (typical break point is 768px)
+    if (window.innerWidth <= 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        window.location.href = "mobile.html";
+    }
+</script>    
 
 <title>Battle For Cyberstan Interactive Map</title>
 <meta name="title" content="Battle For Cyberstan Interactive Map" />
