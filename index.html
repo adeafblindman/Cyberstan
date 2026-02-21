@@ -71,7 +71,8 @@
         <button class="day-btn" onclick="changeDay(7, this)">C Day +7</button>
         <button class="day-btn" onclick="changeDay(8, this)">C Day +8</button>
         <button class="day-btn" onclick="changeDay(9, this)">C Day +9</button> 
-        <button class="day-btn" onclick="changeDay(10, this)">C Day +10</button> 
+        <button class="day-btn" onclick="changeDay(10, this)">TERMINAL DIRECTIVE</button> 
+        <button class="day-btn" onclick="changeDay(11, this)">C Day +10</button> 
     </div>
 
     <div id="map"></div>
@@ -84,39 +85,489 @@
                 { overlayUrl: './maps/BASE MAP.webp' }, { overlayUrl: './maps/MAP-D3.webp' },
                 { overlayUrl: './maps/MAP-D3.webp' }, { overlayUrl: './maps/MAP-D5.webp' },
                 { overlayUrl: './maps/MAP-D5.webp' }, { overlayUrl: './maps/MAP-D5.webp' },
-                { overlayUrl: './maps/MAP-D8.webp' }, { overlayUrl: './maps/MAP-D8.webp' },
-                { overlayUrl: './maps/MAP-D8.webp' }
+                { overlayUrl: './maps/MAP-D8.webp' }, { overlayUrl: './maps/MAP-D9.webp' },
+                { overlayUrl: './maps/MAP-D9.webp' }, { overlayUrl: './maps/MAP-D9.webp' }
             ],
             units: [
-                { id: '8th Army', name: '8th Army', iconUrl: 'icons/8th Army - Infantry - Army.svg', positions: [[110, 1136],[136, 1045],[206, 898],[269, 761],[299, 728],[374, 666],[475, 640],[475, 640],[570, 610],[650, 610],[650, 610]] },
-                { id: '7th Army', name: '7th Army', iconUrl: 'icons/7th Army - Infantry - Army.svg', positions: [[110, 1136],[74, 984],[51, 835],[131, 695],[174, 627],[241, 511],[361, 421],[361, 421],[562, 344],[562, 344],[562, 344]] },
-                { id: '68th AAD', name: '68th Air Assault Division', iconUrl: 'icons/68th Air Assault Division - Air Assault with Organic Lift - Division.svg', positions: [[110, 1136],[152, 1252],[208, 1319],[334, 1394],[359, 1498],[423, 1597],[494, 1620],[494, 1620],[541, 1647],[622, 1666],[622, 1666]] },
-                { id: '23rd AAD', name: '23rd Air Assault Division', iconUrl: 'icons/23rd Air Assault Division - Air Assault with Organic Lift - Division.svg', positions: [[110, 1136],[94, 1210],[177, 1299],[319, 1339],[395, 1343],[478, 1352],[546, 1376],[546, 1376],[602, 1370],[602, 1370],[602, 1370]] },
-                { id: '14th MAD', name: '14th Marine Assault Division', iconUrl: 'icons/14th Marine Assault Division - Marine - Division.svg', positions: [[110, 1136],[111, 1006],[107, 906],[176, 788],[207, 717],[282, 598],[408, 516],[408, 516],[459, 466],[459, 466],[459, 466]] },
-                { id: '77th MI', name: '77th Mobile Infantry', iconUrl: 'icons/77th Mobile Infantry - Motorized.svg', positions: [[74, 456],[198, 454],[308, 458],[198, 454],[122, 378],[122, 378],[122, 378],[122, 378],[122, 378],[122, 378],[122, 378]] },
-                { id: '4th Army', name: '4th Army', iconUrl: 'icons/4TH ARMY - Infantry - Army.svg', positions: [[110, 1136],[200, 1046],[284, 982],[342, 958],[362, 920],[422, 911],[512, 902],[512, 902],[582, 921],[682, 932], [682, 932]] },
-                { id: '3rd Army', name: '3rd Army', iconUrl: 'icons/3rd Army - Infantry - Army.svg', positions: [[110, 1136],[226, 1181],[298, 1248],[414, 1239],[460, 1172],[494, 1135],[536, 1131],[536, 1131],[620, 1120],[780, 1110], [780, 1110]] },
-                { id: '12th Armor', name: '12th Armor', iconUrl: 'icons/12TH ARMOR - Armored_Mechanized_Tracked.svg', spawnDay: 4, positions: [null, null, null, null, [362, 920], [330, 812], [452, 821], [496, 827], [611, 808], [672, 796], [672, 796]] },
-                { id: '14th AR', name: '14th Air Recon', iconUrl: 'icons/14th Air Recon - Reconnaissance.svg', spawnDay: 8, positions: [null, null, null, null, null, null, null, null, [780, 1110], [860, 1282], [860, 1282]] },
-                { id: 'HD1', name: 'HELLDIVER CORPS. 1', iconUrl: 'icons/HELLDIVER CORPS SKULL.svg', positions: [[110, 1136],[110, 1136],[110, 1136],[338, 812],[338, 812],[780, 1110],[780, 1110],[780, 1110],[900, 1666],[900, 1666],[900, 1666]] },
-                { id: 'HD2', name: 'HELLDIVER CORPS. 2', iconUrl: 'icons/HELLDIVER CORPS SKULL.svg', positions: [[74, 456],[74, 456],[74, 456],[74, 456],[74, 456],[74, 456],[74, 456],[74, 456],[74, 456],[74, 456],[74, 456]] },
-                { id: 'HD3', name: 'HELLDIVER CORPS. 3', iconUrl: 'icons/HELLDIVER CORPS SKULL.svg', spawnDay: 3, positions: [null, null, null, [500, 1486], [500, 1486], [500, 1486], [500, 1486], [500, 1486], [500, 1486], [500, 1486], [500, 1486]] },
-                { id: 'HD4', name: 'HELLDIVER CORPS. 4', iconUrl: 'icons/HELLDIVER CORPS SKULL.svg', spawnDay: 5, positions: [null, null, null, null, null, [730, 192], [730, 192], [730, 192], [730, 192], [730, 192], [730, 192]] },
-                { id: 'ammo cache1', name: 'AMMO CACHE', iconUrl: 'icons/ammo cache red.svg', spawnDay: 3, despawnDay: 3, positions: [null, null, null, [355, 934], null] },
-                { id: 'ammo cache2', name: 'AMMO CACHE', iconUrl: 'icons/ammo cache blue.svg', spawnDay: 4, despawnDay: 4, positions: [null, null, null, [355, 934], [355, 934]] },
-                { id: 'arty 1', name: '501st SEAF Artillery', iconUrl: 'icons/Artillery - Heavy.svg', spawnDay: 7, positions: [null, null, null, null, null, null, null, [466, 1018], [466, 1018], [466, 1018], [466, 1018]] },
-                { id: 'arty 2', name: '56th Siege Regiment', iconUrl: 'icons/Artillery - Heavy.svg', spawnDay: 7, positions: [null, null, null, null, null, null, null, [458, 1244], [458, 1244], [458, 1244], [458, 1244]] },
-                { id: 'arty 3', name: '2nd Artillery Company', iconUrl: 'icons/Artillery - Heavy.svg', spawnDay: 7, positions: [null, null, null, null, null, null, null, [478, 778], [525, 780], [525, 780], [525, 780]] },
-                { id: '22nd Cavalry', name: '22nd Cavalry', iconUrl: 'icons/22nd CAV - Reconnaissance_Cavalry_Scout - Company.svg', spawnDay: 8, positions: [null, null, null, null, null, null, null, null, [780, 1110], [810, 1341], [810, 1341]] },
-                { id: 'AUTO WEST', name: 'AUTOMATONS', iconUrl: 'icons/CYBORGS ICON.webp', positions: [[236, 466],[254, 388],[350, 370],[262, 450],[262, 450],[262, 450],[220, 348],[220, 348],[220, 348],[220, 348],[220, 348]] },
-                { id: 'AUTO CENT', name: 'AUTOMATONS', iconUrl: 'icons/CYBORGS ICON.webp', despawnDay: 8, positions: [[272, 1130],[314, 1136],[354, 1130],[420, 1112],[528, 1136],[576, 1126],[606, 1128],[654, 1129],[721, 1117],[820, 1422],[940, 1614]] },
-                { id: 'AUTO OMNIPARITUS', name: 'AUTOMATONS', iconUrl: 'icons/CYBORGS ICON.webp', despawnDay: 8, positions: [[168, 1034],[234, 992],[328, 926],[394, 900],[438, 906],[512, 892],[570, 860],[598, 850],[682, 868],[786, 786],[786, 786]] },
-                { id: 'AUTO OMNIPARITUS SOUTH', name: 'AUTOMATONS', iconUrl: 'icons/CYBORGS ICON.webp', positions: [[168, 1034],[173, 945],[186, 824],[261, 684],[300, 653],[350, 590],[474, 506],[494, 476],[480, 216],[128, 302],[128, 302]] },
-                { id: 'AUTO SOLIDARITET REINFORCE', name: 'AUTOMATONS', iconUrl: 'icons/CYBORGS ICON.webp', positions: [[168, 1034],[114, 914],[94, 730],[106, 574],[120, 512],[120, 512],[154, 530],[154, 530],[154, 530],[154, 530],[154, 530]] },
-                { id: 'AUTO CAMRAT FOR', name: 'AUTOMATONS', iconUrl: 'icons/CYBORGS ICON.webp', positions: [[484, 62],[484, 62],[484, 62],[484, 62],[484, 62],[484, 62],[484, 62],[484, 62],[484, 62],[904, 1730],[904, 1730]] },
-                { id: 'AUTO STAR JETS', name: 'JET BRIGADE', iconUrl: 'icons/Jet_Brigade_Icon.webp', spawnDay: 5, positions: [null, null, null, null, [792, 1196], [792, 1196], [792, 1196], [792, 1196], [918, 1602], [918, 1602], [918, 1602]] },
-                { id: 'AUTO 911 FIRE', name: 'THE INCINERATION CORPS.', iconUrl: 'icons/THE INCINERATION CORPS.webp', spawnDay: 5, positions: [null, null, null, null, [758, 130], [758, 130], [758, 130], [758, 130], [758, 130], [948, 1736], [948, 1736]] }
+                { id: '8th Army', name: '8th Army', iconUrl: 'icons/8th Army - Infantry - Army.svg', 
+                positions: [
+                    [110, 1136], // D0
+                    [136, 1045], // D1
+                    [206, 898],  // D2
+                    [269, 761],  // D3
+                    [299, 728],  // D4
+                    [374, 666],  // D5
+                    [475, 640],  // D6
+                    [475, 640],  // D7
+                    [570, 610],  // D8
+                    [650, 610],  // D9
+                    [650, 610],  // TD
+                    [650, 610]   // D10
+                ] },
+                { id: '7th Army', name: '7th Army', iconUrl: 'icons/7th Army - Infantry - Army.svg', 
+                positions: [
+                    [110, 1136], // D0
+                    [74, 984],   // D1
+                    [51, 835],   // D2
+                    [131, 695],  // D3
+                    [174, 627],  // D4
+                    [241, 511],  // D5
+                    [361, 421],  // D6
+                    [361, 421],  // D7
+                    [562, 344],  // D8
+                    [562, 344],  // D9
+                    [562, 344],  // TD
+                    [562, 344]   // D10
+                ] },
+                { id: '68th AAD', name: '68th Air Assault Division', iconUrl: 'icons/68th Air Assault Division - Air Assault with Organic Lift - Division.svg', 
+                positions: [
+                    [110, 1136], // D0
+                    [152, 1252], // D1
+                    [208, 1319], // D2
+                    [334, 1394], // D3
+                    [359, 1498], // D4
+                    [423, 1597], // D5
+                    [494, 1620], // D6
+                    [494, 1620], // D7
+                    [541, 1647], // D8
+                    [622, 1666], // D9
+                    [622, 1666], // TD
+                    [622, 1666]  // D10
+                ] },
+                { id: '23rd AAD', name: '23rd Air Assault Division', iconUrl: 'icons/23rd Air Assault Division - Air Assault with Organic Lift - Division.svg', 
+                positions: [
+                    [110, 1136], // D0
+                    [94, 1210],  // D1
+                    [177, 1299], // D2
+                    [319, 1339], // D3
+                    [395, 1343], // D4
+                    [478, 1352], // D5
+                    [546, 1376], // D6
+                    [546, 1376], // D7
+                    [602, 1370], // D8
+                    [602, 1370], // D9
+                    [602, 1370], // TD
+                    [602, 1370]  // D10
+                ] },
+                { id: '14th MAD', name: '14th Marine Assault Division', iconUrl: 'icons/14th Marine Assault Division - Marine - Division.svg', 
+                positions: [
+                    [110, 1136], // D0
+                    [111, 1006], // D1
+                    [107, 906],  // D2
+                    [176, 788],  // D3
+                    [207, 717],  // D4
+                    [282, 598],  // D5
+                    [408, 516],  // D6
+                    [408, 516],  // D7
+                    [459, 466],  // D8
+                    [459, 466],  // D9
+                    [459, 466],  // TD
+                    [459, 466]   // D10
+                ] },
+                { id: '77th MI', name: '77th Mobile Infantry', iconUrl: 'icons/77th Mobile Infantry - Motorized.svg', 
+                positions: [
+                    [74, 456],   // D0
+                    [198, 454],  // D1
+                    [308, 458],  // D2
+                    [198, 454],  // D3
+                    [122, 378],  // D4
+                    [122, 378],  // D5
+                    [122, 378],  // D6
+                    [122, 378],  // D7
+                    [122, 378],  // D8
+                    [122, 378],  // D9
+                    [122, 378],  // TD
+                    [122, 378]   // D10
+                ] },
+                { id: '4th Army', name: '4th Army', iconUrl: 'icons/4TH ARMY - Infantry - Army.svg', 
+                positions: [
+                    [110, 1136], // D0
+                    [200, 1046], // D1
+                    [284, 982],  // D2
+                    [342, 958],  // D3
+                    [362, 920],  // D4
+                    [422, 911],  // D5
+                    [512, 902],  // D6
+                    [512, 902],  // D7
+                    [582, 921],  // D8
+                    [682, 932],  // D9
+                    [682, 932],  // TD
+                    [682, 932]   // D10
+                ] },
+                { id: '3rd Army', name: '3rd Army', iconUrl: 'icons/3rd Army - Infantry - Army.svg', 
+                positions: [
+                    [110, 1136], // D0
+                    [226, 1181], // D1
+                    [298, 1248], // D2
+                    [414, 1239], // D3
+                    [460, 1172], // D4
+                    [494, 1135], // D5
+                    [536, 1131], // D6
+                    [536, 1131], // D7
+                    [620, 1120], // D8
+                    [780, 1110], // D9
+                    [780, 1110], // TD
+                    [780, 1110]  // D10
+                ] },
+                { id: '12th Armor', name: '12th Armor', iconUrl: 'icons/12TH ARMOR - Armored_Mechanized_Tracked.svg', spawnDay: 4, 
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    null,        // D3
+                    [362, 920],  // D4
+                    [330, 812],  // D5
+                    [452, 821],  // D6
+                    [496, 827],  // D7
+                    [611, 808],  // D8
+                    [672, 796],  // D9
+                    [672, 796],  // TD
+                    [672, 796]   // D10
+                ] },
+                { id: '14th AR', name: '14th Air Recon', iconUrl: 'icons/14th Air Recon - Reconnaissance.svg', spawnDay: 8, 
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    null,        // D3
+                    null,        // D4
+                    null,        // D5
+                    null,        // D6
+                    null,        // D7
+                    [780, 1110], // D8
+                    [860, 1282], // D9
+                    [860, 1282], // TD
+                    [860, 1282]  // D10
+                ] },
+                { id: 'HD1', name: 'HELLDIVER CORPS. 1', iconUrl: 'icons/HELLDIVER CORPS SKULL.svg', 
+                positions: [
+                    [110, 1136], // D0
+                    [110, 1136], // D1
+                    [110, 1136], // D2
+                    [338, 812],  // D3
+                    [338, 812],  // D4
+                    [780, 1110], // D5
+                    [780, 1110], // D6
+                    [780, 1110], // D7
+                    [900, 1666], // D8
+                    [900, 1666], // D9
+                    [900, 1666], // TD
+                    [900, 1666]  // D10
+                ] },
+                { id: 'HD2', name: 'HELLDIVER CORPS. 2', iconUrl: 'icons/HELLDIVER CORPS SKULL.svg', 
+                positions: [
+                    [74, 456],   // D0
+                    [74, 456],   // D1
+                    [74, 456],   // D2
+                    [74, 456],   // D3
+                    [74, 456],   // D4
+                    [74, 456],   // D5
+                    [74, 456],   // D6
+                    [74, 456],   // D7
+                    [74, 456],   // D8
+                    [74, 456],   // D9
+                    [74, 456],   // TD
+                    [74, 456]    // D10
+                ] },
+                { id: 'HD3', name: 'HELLDIVER CORPS. 3', iconUrl: 'icons/HELLDIVER CORPS SKULL.svg', spawnDay: 3, 
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    [500, 1486], // D3
+                    [500, 1486], // D4
+                    [500, 1486], // D5
+                    [500, 1486], // D6
+                    [500, 1486], // D7
+                    [500, 1486], // D8
+                    [500, 1486], // D9
+                    [500, 1486], // TD
+                    [500, 1486]  // D10
+                ] },
+                { id: 'HD4', name: 'HELLDIVER CORPS. 4', iconUrl: 'icons/HELLDIVER CORPS SKULL.svg', spawnDay: 5, 
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    null,        // D3
+                    null,        // D4
+                    [730, 192],  // D5
+                    [730, 192],  // D6
+                    [730, 192],  // D7
+                    [730, 192],  // D8
+                    [730, 192],  // D9
+                    [730, 192],  // TD
+                    [730, 192]   // D10
+                ] },
+                { id: 'ammo cache1', name: 'AMMO CACHE', iconUrl: 'icons/ammo cache red.svg', spawnDay: 3, despawnDay: 3, 
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    [355, 934],  // D3
+                    null,        // D4
+                    null,        // D5
+                    null,        // D6
+                    null,        // D7
+                    null,        // D8
+                    null,        // D9
+                    null,        // TD
+                    null         // D10
+                ] },
+                { id: 'ammo cache2', name: 'AMMO CACHE', iconUrl: 'icons/ammo cache blue.svg', spawnDay: 4, despawnDay: 4, 
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    [355, 934],  // D3
+                    [355, 934],  // D4
+                    null,        // D5
+                    null,        // D6
+                    null,        // D7
+                    null,        // D8
+                    null,        // D9
+                    null,        // TD
+                    null         // D10
+                ] },
+                { id: 'arty 1', name: '501st SEAF Artillery', iconUrl: 'icons/Artillery - Heavy.svg', spawnDay: 7,
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    null,        // D3
+                    null,        // D4
+                    null,        // D5
+                    null,        // D6
+                    [466, 1018], // D7
+                    [466, 1018], // D8
+                    [466, 1018], // D9
+                    [381, 815], // TD
+                    [381, 815]  // D10
+                ] },
+                { id: 'arty 2', name: '56th Siege Regiment', iconUrl: 'icons/Artillery - Heavy.svg', spawnDay: 7,
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    null,        // D3
+                    null,        // D4
+                    null,        // D5
+                    null,        // D6
+                    [458, 1244], // D7
+                    [458, 1244], // D8
+                    [458, 1244], // D9
+                    [156, 1132], // TD
+                    [156, 1132]  // D10
+                ] },
+                { id: 'arty 3', name: '2nd Artillery Company', iconUrl: 'icons/Artillery - Heavy.svg', spawnDay: 7,
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    null,        // D3
+                    null,        // D4
+                    null,        // D5
+                    null,        // D6
+                    [478, 778],  // D7
+                    [525, 780],  // D8
+                    [525, 780],  // D9
+                    [381, 815],  // TD
+                    [381, 815]   // D10
+                ] },
+                { id: '22nd Cavalry', name: '22nd Cavalry', iconUrl: 'icons/22nd CAV - Reconnaissance_Cavalry_Scout - Company.svg', spawnDay: 8, 
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    null,        // D3
+                    null,        // D4
+                    null,        // D5
+                    null,        // D6
+                    null,        // D7
+                    [780, 1110], // D8
+                    [810, 1341], // D9
+                    [810, 1341], // TD
+                    [810, 1341]  // D10
+                ] },
+
+// automatons
+
+                { id: 'AUTO WEST', name: 'CYBORGS WEST', iconUrl: 'icons/CYBORGS ICON.webp', 
+                positions: [
+                    [236, 466],  // D0
+                    [254, 388],  // D1
+                    [350, 370],  // D2
+                    [262, 450],  // D3
+                    [262, 450],  // D4
+                    [262, 450],  // D5
+                    [220, 348],  // D6
+                    [220, 348],  // D7
+                    [220, 348],  // D8
+                    [220, 348],  // D9
+                    [220, 348],  // TD
+                    [220, 348]   // D10
+                ] },
+                { id: 'AUTO CENT', name: 'CYBORGS CENT', iconUrl: 'icons/CYBORGS ICON.webp', despawnDay: 8, 
+                positions: [
+                    [272, 1130], // D0
+                    [314, 1136], // D1
+                    [354, 1130], // D2
+                    [420, 1112], // D3
+                    [528, 1136], // D4
+                    [576, 1126], // D5
+                    [606, 1128], // D6
+                    [654, 1129], // D7
+                    [721, 1117], // D8
+                    [820, 1422], // D9
+                    [940, 1614], // TD
+                    [940, 1614]  // D10
+                ] },
+                { id: 'AUTO OMNIPARITUS', name: 'CYBORGS OMNI', iconUrl: 'icons/CYBORGS ICON.webp', despawnDay: 8, 
+                positions: [
+                    [168, 1034], // D0
+                    [234, 992],  // D1
+                    [328, 926],  // D2
+                    [394, 900],  // D3
+                    [438, 906],  // D4
+                    [512, 892],  // D5
+                    [570, 860],  // D6
+                    [598, 850],  // D7
+                    [682, 868],  // D8
+                    [786, 786],  // D9
+                    [786, 786],  // TD
+                    [786, 786]   // D10
+                ] },
+                { id: 'AUTO OMNIPARITUS SOUTH', name: 'CYBORGS OMNI SOUTH', iconUrl: 'icons/CYBORGS ICON.webp', 
+                positions: [
+                    [168, 1034], // D0
+                    [173, 945],  // D1
+                    [186, 824],  // D2
+                    [261, 684],  // D3
+                    [300, 653],  // D4
+                    [350, 590],  // D5
+                    [474, 506],  // D6
+                    [494, 476],  // D7
+                    [480, 216],  // D8
+                    [128, 302],  // D9
+                    [128, 302],  // TD
+                    [128, 302]   // D10
+                ] },
+                { id: 'AUTO SOLIDARITET REINFORCE', name: 'CYBORGS SOL REIN', iconUrl: 'icons/CYBORGS ICON.webp', 
+                positions: [
+                    [168, 1034], // D0
+                    [114, 914],  // D1
+                    [94, 730],   // D2
+                    [106, 574],  // D3
+                    [120, 512],  // D4
+                    [120, 512],  // D5
+                    [154, 530],  // D6
+                    [154, 530],  // D7
+                    [154, 530],  // D8
+                    [154, 530],  // D9
+                    [154, 530],  // TD
+                    [154, 530]   // D10
+                ] },
+                { id: 'AUTO CAMRAT FOR', name: 'CYBORGS CAMRAT', iconUrl: 'icons/CYBORGS ICON.webp', 
+                positions: [
+                    [484, 62],   // D0
+                    [484, 62],   // D1
+                    [484, 62],   // D2
+                    [484, 62],   // D3
+                    [484, 62],   // D4
+                    [484, 62],   // D5
+                    [484, 62],   // D6
+                    [484, 62],   // D7
+                    [484, 62],   // D8
+                    [904, 1730], // D9
+                    [904, 1730], // TD
+                    [904, 1730]  // D10
+                ] },
+                { id: 'AUTO STAR JETS', name: 'JET BRIGADE', iconUrl: 'icons/Jet_Brigade_Icon.webp', spawnDay: 5, 
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    null,        // D3
+                    [792, 1196], // D4
+                    [792, 1196], // D5
+                    [792, 1196], // D6
+                    [792, 1196], // D7
+                    [918, 1602], // D8
+                    [918, 1602], // D9
+                    [918, 1602], // TD
+                    [918, 1602]  // D10
+                ] },
+                { id: 'AUTO 911 FIRE', name: 'THE INCINERATION CORPS.', iconUrl: 'icons/THE INCINERATION CORPS.webp', spawnDay: 5, 
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    null,        // D3
+                    [758, 130],  // D4
+                    [758, 130],  // D5
+                    [758, 130],  // D6
+                    [758, 130],  // D7
+                    [758, 130],  // D8
+                    [948, 1736], // D9
+                    [948, 1736], // TD
+                    [948, 1736]  // D10
+                ] },
+// super destoryers
+
+                { id: 'SD1', name: 'SES Vanguard of Truth', shipIconUrl: 'icons/super destoryer.webp', spawnDay: 9,
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    null,        // D3
+                    null,        // D4
+                    null,        // D5
+                    null,        // D6
+                    null,        // D7
+                    null,        // D8
+                    [-1936, 1380],        // D9
+                    [136, 1218], // TD
+                    [136, 1218]  // D10
+                ] },
+                
+                { id: 'SD2', name: 'Banner of Justice', shipIconUrl: 'icons/super destoryer.webp', spawnDay: 9,
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    null,        // D3
+                    null,        // D4
+                    null,        // D5
+                    null,        // D6
+                    null,        // D7
+                    null,        // D8
+                    [-1936, 1380],        // D9
+                    [136, 1218], // TD
+                    [136, 1218]  // D10
+                ] },
+                                { id: 'SD3', name: 'Herald of Dawn ', shipIconUrl: 'icons/super destoryer.webp', spawnDay: 9,
+                positions: [
+                    null,        // D0
+                    null,        // D1
+                    null,        // D2
+                    null,        // D3
+                    null,        // D4
+                    null,        // D5
+                    null,        // D6
+                    null,        // D7
+                    null,        // D8
+                    [-1936, 1380],        // D9
+                    [251, 478], // TD
+                    [251, 478]  // D10
+                ] },
+
+
+
+
             ],
+            
+
+
             lines: [
                 {
                     id: 'eastern-front',
@@ -132,6 +583,7 @@
                         [[192, 475],[361, 317],[447, 490],[541, 639],[550, 873],[541, 1011],[597, 1132],[561, 1241],[596, 1378],[526, 1433],[510, 1539],[507, 1919]], // Day 7
                         [[187, 475],[424, 255],[610, 270],[536, 464],[651, 620],[594, 721],[656, 807],[631, 921],[620, 1026],[662, 1115],[647, 1269],[638, 1383],[568, 1431],[505, 1541],[603, 1918]], // Day 8
                         [[193, 475],[442, 238],[582, 248],[705, 593],[732, 932],[799, 1103],[912, 1282],[781, 1458],[671, 1598],[671, 1764],[655, 1919],], // Day 9
+                        [[193, 475],[442, 238],[582, 248],[705, 593],[732, 932],[799, 1103],[912, 1282],[781, 1458],[671, 1598],[671, 1764],[655, 1919],], // TD
                         [[],]  // Day 10
                     ]
                 },
@@ -140,23 +592,24 @@
                     color: '#000000',
                     positions: [
                         [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 0
-                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 0
-                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 0
-                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 0
-                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 0
-                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 0
-                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 0
-                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 0
-                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 0
-                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 0
-                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 0
+                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 1
+                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 2
+                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 3
+                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 4
+                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 5
+                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 6
+                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 7
+                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 8
+                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day 9
+                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]], // Day TD
+                        [[35, 386], [132, 382], [191, 477], [131, 563], [37, 560], [35, 386]] // Day 10
                         
 
                     ]
                 }
             ]
         };
-
+// bounds are set here
         const bounds = [[0, 0], [1080, 1920]]; 
         const map = L.map('map', { crs: L.CRS.Simple, minZoom: -1, maxZoom: 2, maxBounds: bounds });
         
@@ -165,6 +618,8 @@
         map.fitBounds(bounds);
 
         // Name overlay Marker
+        //const scanIcon = L.icon({ iconUrl: 'assets/CRT Filter.png', iconSize: [1080, 1920], iconAnchor: [1, 1920] });
+        //L.marker([0, 0], { icon: scanIcon, interactive: false }).addTo(map);        
         const nameIcon = L.icon({ iconUrl: 'assets/NAME.png', iconSize: [640, 39], iconAnchor: [0, 0] });
         L.marker([0, 0], { icon: nameIcon, interactive: false, zIndexOffset: 1000 }).addTo(map);
 
@@ -183,17 +638,32 @@
 
         // --- Initialize Units ---
         const unitMarkers = {};
-        battleData.units.forEach(unit => {
-            const icon = L.divIcon({
-                className: 'animated-unit',
-                html: `<img src="${unit.iconUrl}" class="unit-img" style="width: 40px; height: 45px;" />`, 
-                iconSize: [40, 45], iconAnchor: [20, 15]
-            });
-            const marker = L.marker(unit.positions[0] || [0,0], { icon: icon, zIndexOffset: 500 });
-            marker.bindTooltip(unit.name, { direction: 'top', offset: [0, -15] });
-            unitMarkers[unit.id] = marker;
-            if (!unit.spawnDay || unit.spawnDay === 0) marker.addTo(map);
-        });
+            battleData.units.forEach(unit => {
+    
+    // 1. Determine which URL and dimensions to use
+        const isShip = !!unit.shipIconUrl; // Check if the unit has a ship icon
+        const imageUrl = isShip ? unit.shipIconUrl : unit.iconUrl;
+    
+        const iconWidth = isShip ? 50 : 40;
+        const iconHeight = isShip ? 40 : 45;
+    
+    // Adjust anchor point so the icon stays centered (half the width/height)
+        const anchorX = isShip ? 25 : 20; 
+        const anchorY = isShip ? 20 : 15; 
+
+    // 2. Build the icon with the dynamic variables
+        const icon = L.divIcon({
+            className: 'animated-unit',
+            html: `<img src="${imageUrl}" class="unit-img" style="width: ${iconWidth}px; height: ${iconHeight}px;" />`, 
+            iconSize: [iconWidth, iconHeight], 
+            iconAnchor: [anchorX, anchorY]
+    });
+
+    const marker = L.marker(unit.positions[0] || [0,0], { icon: icon, zIndexOffset: 500 });
+    marker.bindTooltip(unit.name, { direction: 'top', offset: [0, -15] });
+    unitMarkers[unit.id] = marker;
+    if (!unit.spawnDay || unit.spawnDay === 0) marker.addTo(map);
+});
 
         function changeDay(dayIndex, buttonElement) {
             document.querySelectorAll('.day-btn').forEach(btn => btn.classList.remove('active'));
